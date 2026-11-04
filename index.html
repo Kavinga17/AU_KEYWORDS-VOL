@@ -1,0 +1,1280 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Medfuture — SEO Market Demand</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F7FA;--surface:#FFF;--border:#E2E8F0;
+  --text:#1A202C;--muted:#718096;--accent:#1B6CA8;
+  --vol-bar:#3182CE;--vol-bg:#EBF4FF;
+  --cand-bg:#EBF8FF;--cand-txt:#2B6CB0;
+  --pend-bg:#FFF7E6;--pend-txt:#B7791F;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#0F172A;--surface:#1E293B;--border:#334155;
+  --text:#F1F5F9;--muted:#94A3B8;--accent:#3B82F6;
+  --vol-bar:#60A5FA;--vol-bg:#1E3A5F;
+  --cand-bg:#1E3A5F;--cand-txt:#93C5FD;
+  --pend-bg:#2D2008;--pend-txt:#F6AD55;
+}}
+:root[data-theme="light"]{
+  --bg:#F5F7FA;--surface:#FFF;--border:#E2E8F0;
+  --text:#1A202C;--muted:#718096;--accent:#1B6CA8;
+  --vol-bar:#3182CE;--vol-bg:#EBF4FF;
+  --cand-bg:#EBF8FF;--cand-txt:#2B6CB0;
+  --pend-bg:#FFF7E6;--pend-txt:#B7791F;
+}
+:root[data-theme="dark"]{
+  --bg:#0F172A;--surface:#1E293B;--border:#334155;
+  --text:#F1F5F9;--muted:#94A3B8;--accent:#3B82F6;
+  --vol-bar:#60A5FA;--vol-bg:#1E3A5F;
+  --cand-bg:#1E3A5F;--cand-txt:#93C5FD;
+  --pend-bg:#2D2008;--pend-txt:#F6AD55;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--bg);color:var(--text);font-size:14px;min-height:100vh}
+.hdr{background:var(--accent);color:#fff;padding:14px 24px;display:flex;
+  align-items:center;gap:12px;position:sticky;top:0;z-index:100;
+  box-shadow:0 2px 10px rgba(0,0,0,.2)}
+.hdr h1{font-size:17px;font-weight:700;letter-spacing:-.3px}
+.hdr small{font-size:12px;opacity:.75;margin-left:auto}
+.tabs{background:var(--surface);border-bottom:1px solid var(--border);
+  padding:0 24px;display:flex;position:sticky;top:52px;z-index:99;overflow-x:auto}
+.tab{padding:11px 18px;cursor:pointer;font-size:13px;font-weight:600;
+  color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap;
+  transition:all .15s;user-select:none}
+.tab:hover{color:var(--accent)}
+.tabs{flex-direction:column;padding:0}
+.tabrow{display:flex;overflow-x:auto;padding:0 24px}
+.tabrow.div .tab{font-size:14px;font-weight:700;padding:12px 22px}
+.tabrow.sub{border-top:1px solid var(--border)}
+.tabrow.sub:empty{display:none}
+.tabrow.sub .tab{font-size:12.5px;padding:9px 16px}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.toolbar{padding:14px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;max-width:1100px;margin:0 auto}
+.cnt{font-size:12px;color:var(--muted);margin-left:auto}
+.wrap{padding:0 24px 48px;max-width:1100px;margin:0 auto}
+.section{margin-bottom:12px}
+.shdr{display:flex;align-items:center;gap:10px;padding:10px 16px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:8px 8px 0 0;border-bottom:none;font-weight:700;
+  font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.sdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.scnt{margin-left:auto;font-weight:400;font-size:11px;opacity:.7}
+.tbl-wrap{width:100%;overflow-x:auto}
+table{width:100%;table-layout:fixed;border-collapse:collapse;background:var(--surface);
+  border:1px solid var(--border);border-radius:0 0 8px 8px}
+col.c-num {width:48px}
+col.c-kw  {width:auto}
+col.c-tgt {width:130px}
+col.c-typ {width:100px}
+col.c-vol {width:160px}
+thead th{padding:7px 12px;font-size:11px;font-weight:600;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.5px;background:var(--bg);
+  border-bottom:1px solid var(--border);text-align:left;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+tbody tr{border-bottom:1px solid var(--border);transition:background .1s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{filter:brightness(.97)}
+td{padding:9px 12px;vertical-align:middle;overflow:hidden;text-overflow:ellipsis}
+.n{text-align:center;font-size:12px;font-weight:700;
+  color:var(--muted);position:relative;padding-left:14px}
+.bar{position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:0 2px 2px 0}
+.kw{font-size:13px;font-weight:500;white-space:normal;overflow-wrap:anywhere}
+.tgt{font-size:12px;color:var(--muted);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;text-align:center}
+.cand{background:var(--cand-bg);color:var(--cand-txt);font-size:11px;
+  font-weight:600;padding:3px 9px;border-radius:6px;white-space:nowrap;
+  display:inline-block}
+.vc{display:flex;align-items:center;gap:8px}
+.vn{font-size:13px;font-weight:700;min-width:38px;text-align:right;
+  font-variant-numeric:tabular-nums;flex-shrink:0}
+.vbw{flex:1;height:5px;background:var(--vol-bg);border-radius:3px;overflow:hidden;min-width:40px}
+.vbf{height:100%;background:var(--vol-bar);border-radius:3px}
+.empty{text-align:center;padding:48px;color:var(--muted)}
+.nq-section{margin-bottom:12px;border:1px solid #F6D860;border-radius:8px;overflow:hidden}
+.nq-row{display:flex;align-items:center;padding:10px 16px;background:#FFFBEA;
+  border-bottom:1px solid #F6E88A;font-size:13px;font-style:italic;color:#92660A}
+.nq-row:last-child{border-bottom:none}
+.nq-dot{width:6px;height:6px;border-radius:50%;background:#D4A017;flex-shrink:0;margin-right:10px}
+@media(prefers-color-scheme:dark){
+  .nq-section{border-color:#5A4500}
+  .nq-row{background:#2D2008;color:#F6AD55;border-bottom-color:#5A4500}
+}
+:root[data-theme="dark"] .nq-section{border-color:#5A4500}
+:root[data-theme="dark"] .nq-row{background:#2D2008;color:#F6AD55;border-bottom-color:#5A4500}
+.zero-row td{padding:8px 12px;background:#FAFAFA;border-top:1px dashed var(--border)}
+@media(prefers-color-scheme:dark){.zero-row td{background:#161E2E}}
+:root[data-theme="dark"] .zero-row td{background:#161E2E}
+.zero-label{font-size:11px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.5px}
+.view-toggle{display:flex;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;flex-shrink:0;margin-right:8px}
+.vt-btn{padding:7px 16px;font-size:12px;font-weight:600;cursor:pointer;
+  background:var(--surface);color:var(--muted);border:none;transition:all .15s}
+.vt-btn.active{background:var(--accent);color:#fff}
+.city-total{font-size:15px;font-weight:800;font-variant-numeric:tabular-nums}
+.kw-chips{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.6;display:flex;flex-wrap:wrap;gap:3px}
+.kw-chip{display:inline-block;background:var(--bg);border:1px solid var(--border);
+  border-radius:4px;padding:1px 6px;white-space:normal;overflow-wrap:anywhere;vertical-align:middle}
+.kw-more{display:inline-block;font-size:11px;color:var(--accent);padding:1px 7px;
+  background:var(--accent)18;border:1px solid var(--accent)40;border-radius:4px;
+  cursor:default;user-select:none;font-weight:600;vertical-align:middle;margin-left:4px}
+#kw-floating-dd{display:none;position:fixed;z-index:9999;background:var(--surface);
+  border:1px solid var(--border);border-radius:8px;box-shadow:0 6px 24px #0003;
+  padding:6px 0;min-width:280px;max-width:420px}
+.kw-dd-item{padding:7px 14px;font-size:12px;display:flex;justify-content:space-between;
+  align-items:center;gap:12px;color:var(--text)}
+.kw-dd-item:hover{background:var(--bg)}
+.kw-dd-item b{color:var(--accent);white-space:nowrap;font-variant-numeric:tabular-nums}
+.kw-chips-wrap{position:relative}
+.cntry-badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;
+  padding:2px 8px;margin:2px 3px 2px 0;border-radius:4px;
+  background:var(--accent)18;color:var(--accent);border:1px solid var(--accent)35}
+.cntry-vol{font-size:11px;font-weight:800;color:var(--text);font-variant-numeric:tabular-nums;
+  background:var(--border);border-radius:3px;padding:0 4px;margin-left:2px}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="2">
+    <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+  </svg>
+  <h1>medfuture — SEO Market Demand</h1>
+  <small>Keyword Intelligence Dashboard</small>
+</div>
+<div class="tabs" id="tabs"></div>
+<div class="toolbar">
+  <div class="cnt" id="cnt"></div>
+</div>
+<div class="wrap" id="content"></div>
+<div id="kw-floating-dd"></div>
+
+<script>
+const NO_QUERY = {
+  "VR GP": ["FRACGP GP Jobs", "FACRRM GP Jobs", "Metro GP Jobs"],
+  "GP Registrar": ["MM2 GP Jobs", "MM3 GP Jobs", "MM4 GP Jobs", "MM5 GP Jobs", "MM6 GP Jobs", "MM7 GP Jobs", "FSP GP Jobs", "PFP GP Jobs", "PEP Pathway GP Jobs", "DPA GP Jobs"],
+  "GP Locum": ["Aboriginal GP Jobs", "Occupational Health GP Jobs", "Rural & Remote GP Jobs", "After-Hours GP Jobs", "Mens Health GP Jobs", "Womens Health GP Jobs", "Skin Cancer & Cosmetic Services Jobs", "Cannabis Medicine Jobs", "Prison Health Jobs", "Defense Military Health Jobs", "Alcohol Drug GP Jobs", "Telehealth GP Jobs"],
+  "Psychiatrist": ["Adult Psychiatry Jobs", "General Psychiatry Jobs", "Child Adolescent Psychiatry Jobs", "Psychiatry of Old Age Jobs"],
+  "OT": ["Community OT Jobs", "Aged Care OT Jobs"],
+  "Podiatrist": ["Sports Podiatry Jobs", "Musculoskeletal Podiatry Jobs", "Aged Care Podiatry Jobs"],
+  "Physio": ["Musculoskeletal Physio Jobs", "NDIS Physiotherapist Jobs", "Rehab Physiotherapist Jobs"],
+  "Speech Pathologist": ["Paediatric Speech Pathologist Jobs", "Community Speech Pathologist Jobs", "School Speech Pathologist Jobs", "NDIS Speech Pathologist Jobs", "Community Speech Therapy Jobs", "Paediatric Speech Therapy Jobs", "Neuro Speech Rehab Jobs"],
+  "SIMG": ["Family Medicine Specialist Australia"]
+};
+
+const RAW = {
+  "VR GP":[
+    {"keyword": "general practitioner jobs melbourne", "seed": "General Practitioner Jobs", "target": "Melbourne", "au_volume": 260},
+    {"keyword": "general practitioner jobs sydney", "seed": "General Practitioner Jobs", "target": "Sydney", "au_volume": 110},
+    {"keyword": "general practitioner jobs in victoria", "seed": "General Practitioner Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "general practitioner jobs brisbane", "seed": "General Practitioner Jobs", "target": "Brisbane", "au_volume": 20},
+    {"keyword": "general practitioner jobs in new south wales", "seed": "General Practitioner Jobs", "target": "Sydney", "au_volume": 20},
+    {"keyword": "general practitioner jobs in nsw", "seed": "General Practitioner Jobs", "target": "Sydney", "au_volume": 20},
+    {"keyword": "non vr gp jobs melbourne", "seed": "VR GP", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "non vr gp jobs victoria", "seed": "VR GP", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "vr gp jobs melbourne", "seed": "VR GP", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "general practitioner jobs in vic", "seed": "General Practitioner Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "general practitioner melbourne vic jobs", "seed": "General Practitioner Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "general practitioner jobs in sa", "seed": "General Practitioner Jobs", "target": "Adelaide", "au_volume": 10},
+    {"keyword": "general practitioner jobs in south australia", "seed": "General Practitioner Jobs", "target": "Adelaide", "au_volume": 10},
+    {"keyword": "general practitioner sydney nsw jobs", "seed": "General Practitioner Jobs", "target": "Sydney", "au_volume": 10},
+    {"keyword": "locum general practitioner jobs in sa", "seed": "General Practitioner Jobs", "target": "Adelaide", "au_volume": 10},
+    {"keyword": "locum general practitioner jobs in south australia", "seed": "General Practitioner Jobs", "target": "Adelaide", "au_volume": 10},
+    {"keyword": "vr general practitioner jobs south australia", "seed": "General Practitioner Jobs", "target": "Adelaide", "au_volume": 10},
+    {"keyword": "locum general practitioner jobs in tas", "seed": "General Practitioner Jobs", "target": "Hobart", "au_volume": 10},
+    {"keyword": "locum general practitioner jobs in tasmania", "seed": "General Practitioner Jobs", "target": "Hobart", "au_volume": 10},
+    {"keyword": "locum general practitioner jobs in vic", "seed": "General Practitioner Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "locum general practitioner jobs in victoria", "seed": "General Practitioner Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "vr general practitioner jobs tasmania", "seed": "General Practitioner Jobs", "target": "Hobart", "au_volume": 10},
+    {"keyword": "general practitioner jobs in act", "seed": "General Practitioner Jobs", "target": "Canberra", "au_volume": 10},
+    {"keyword": "general practitioner jobs gold coast", "seed": "General Practitioner Jobs", "target": "Gold Coast", "au_volume": 10},
+    {"keyword": "general practitioner jobs in qld", "seed": "General Practitioner Jobs", "target": "Brisbane", "au_volume": 10},
+    {"keyword": "general practitioner jobs in queensland", "seed": "General Practitioner Jobs", "target": "Brisbane", "au_volume": 10},
+    {"keyword": "locum general practitioner jobs in qld", "seed": "General Practitioner Jobs", "target": "Brisbane", "au_volume": 10},
+    {"keyword": "locum general practitioner jobs in queensland", "seed": "General Practitioner Jobs", "target": "Brisbane", "au_volume": 10},
+    {"keyword": "vr general practitioner jobs new south wales", "seed": "General Practitioner Jobs", "target": "Sydney", "au_volume": 10},
+    {"keyword": "vr general practitioner jobs queensland", "seed": "General Practitioner Jobs", "target": "Brisbane", "au_volume": 10},
+    {"keyword": "general practitioner jobs victoria", "seed": "General Practitioner Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "general practitioner melbourne jobs", "seed": "General Practitioner Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "general practitioner jobs adelaide", "seed": "General Practitioner Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "general practitioner gold coast jobs", "seed": "General Practitioner Jobs", "target": "Gold Coast", "au_volume": 0},
+    {"keyword": "general practitioner jobs canberra", "seed": "General Practitioner Jobs", "target": "Canberra", "au_volume": 0},
+    {"keyword": "aged care general practitioner brisbane jobs", "seed": "General Practitioner Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "general practitioner aged care job brisbane", "seed": "General Practitioner Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "general practitioner jobs bundaberg", "seed": "General Practitioner Jobs", "target": "Bundaberg", "au_volume": 0},
+    {"keyword": "general practitioner jobs cairns", "seed": "General Practitioner Jobs", "target": "Cairns", "au_volume": 0},
+    {"keyword": "general practitioner jobs in brisbane", "seed": "General Practitioner Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "general practitioner jobs nsw", "seed": "General Practitioner Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "general practitioner jobs sunshine coast", "seed": "General Practitioner Jobs", "target": "Sunshine Coast", "au_volume": 0},
+    {"keyword": "non vr gp jobs brisbane", "seed": "VR GP", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "non vr gp jobs in nsw", "seed": "VR GP", "target": "Sydney", "au_volume": 0},
+    {"keyword": "non vr gp jobs nsw", "seed": "VR GP", "target": "Sydney", "au_volume": 0},
+    {"keyword": "non vr gp jobs sydney", "seed": "VR GP", "target": "Sydney", "au_volume": 0},
+    {"keyword": "average vr gp pay canberra", "seed": "VR GP", "target": "Canberra", "au_volume": 0},
+    {"keyword": "vr gp jobs canberra", "seed": "VR GP", "target": "Canberra", "au_volume": 0}
+  ],
+  "GP Registrar":[
+    {"keyword": "gp jobs rural wa", "seed": "Rural GP Jobs", "target": "Perth", "au_volume": 30},
+    {"keyword": "rural gp jobs victoria", "seed": "Rural GP Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "gp jobs rural nsw", "seed": "Rural GP Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "rural gp jobs in victoria", "seed": "Rural GP Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "rural gp jobs south australia", "seed": "Rural GP Jobs", "target": "Adelaide", "au_volume": 0}
+  ],
+  "GP Locum":[
+    {"keyword": "gp locum jobs melbourne", "seed": "Locum GP Jobs", "target": "Melbourne", "au_volume": 40},
+    {"keyword": "gp locum jobs sydney", "seed": "Locum GP Jobs", "target": "Sydney", "au_volume": 30},
+    {"keyword": "locum gp jobs brisbane", "seed": "Locum GP Jobs", "target": "Brisbane", "au_volume": 30},
+    {"keyword": "locum gp jobs perth", "seed": "Locum GP Jobs", "target": "Perth", "au_volume": 30},
+    {"keyword": "locum gp jobs sydney", "seed": "Locum GP Jobs", "target": "Sydney", "au_volume": 30},
+    {"keyword": "gp locum jobs perth", "seed": "Locum GP Jobs", "target": "Perth", "au_volume": 20},
+    {"keyword": "locum gp jobs in act", "seed": "Locum GP Jobs", "target": "Canberra", "au_volume": 20},
+    {"keyword": "locum gp jobs in wa", "seed": "Locum GP Jobs", "target": "Perth", "au_volume": 20},
+    {"keyword": "locum gp jobs in western australia", "seed": "Locum GP Jobs", "target": "Perth", "au_volume": 20},
+    {"keyword": "gp locum jobs victoria", "seed": "Locum GP Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "locum gp jobs in victoria", "seed": "Locum GP Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "gp locum jobs nsw", "seed": "Locum GP Jobs", "target": "Sydney", "au_volume": 10},
+    {"keyword": "locum gp jobs in australian capital territory", "seed": "Locum GP Jobs", "target": "Canberra", "au_volume": 10},
+    {"keyword": "locum gp jobs in new south wales", "seed": "Locum GP Jobs", "target": "Sydney", "au_volume": 10},
+    {"keyword": "locum gp jobs in nsw", "seed": "Locum GP Jobs", "target": "Sydney", "au_volume": 10},
+    {"keyword": "locum gp jobs in tas", "seed": "Locum GP Jobs", "target": "Hobart", "au_volume": 10},
+    {"keyword": "locum gp jobs in tasmania", "seed": "Locum GP Jobs", "target": "Hobart", "au_volume": 10},
+    {"keyword": "locum gp jobs in vic", "seed": "Locum GP Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "locum gp jobs victoria", "seed": "Locum GP Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "locum gp jobs in sa", "seed": "Locum GP Jobs", "target": "Adelaide", "au_volume": 10},
+    {"keyword": "locum gp jobs in south australia", "seed": "Locum GP Jobs", "target": "Adelaide", "au_volume": 10},
+    {"keyword": "gp locum jobs adelaide", "seed": "Locum GP Jobs", "target": "Adelaide", "au_volume": 10},
+    {"keyword": "gp locum jobs gold coast", "seed": "Locum GP Jobs", "target": "Gold Coast", "au_volume": 10},
+    {"keyword": "melbourne gp locum jobs", "seed": "Locum GP Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "gp locum job in nsw", "seed": "Locum GP Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "gp locum jobs in sydney", "seed": "Locum GP Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "gp locum jobs new south wales", "seed": "Locum GP Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "gp locum jobs sydney pathway", "seed": "Locum GP Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "gp locum jobs wa", "seed": "Locum GP Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "gp locum jobs western australia", "seed": "Locum GP Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "locum gp jobs perth south", "seed": "Locum GP Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "new south wales gp locum jobs", "seed": "Locum GP Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "perth gp locum jobs", "seed": "Locum GP Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "western australia gp locum jobs", "seed": "Locum GP Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "gp locum jobs canberra", "seed": "Locum GP Jobs", "target": "Canberra", "au_volume": 0},
+    {"keyword": "gp locum jobs hobart", "seed": "Locum GP Jobs", "target": "Hobart", "au_volume": 0},
+    {"keyword": "gp locum jobs tasmania", "seed": "Locum GP Jobs", "target": "Hobart", "au_volume": 0},
+    {"keyword": "tasmania gp locum jobs", "seed": "Locum GP Jobs", "target": "Hobart", "au_volume": 0},
+    {"keyword": "victoria gp locum jobs", "seed": "Locum GP Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "adelaide gp locum jobs", "seed": "Locum GP Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "gp locum jobs south australia", "seed": "Locum GP Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "locum gp jobs south adelaide", "seed": "Locum GP Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "locum gp jobs south australia", "seed": "Locum GP Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "south australia gp locum jobs", "seed": "Locum GP Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "locum gp jobs adelaide", "seed": "Locum GP Jobs", "target": "Adelaide", "au_volume": 0}
+  ],
+  "MOD":[
+    {"keyword": "dentist jobs sydney nsw", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 320},
+    {"keyword": "dentist jobs melbourne australia", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 320},
+    {"keyword": "psychology jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 260},
+    {"keyword": "psychology jobs melbourne australia", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 260},
+    {"keyword": "dentist jobs melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 260},
+    {"keyword": "dentist jobs brisbane", "seed": "Dentist Jobs", "target": "Brisbane", "au_volume": 260},
+    {"keyword": "dentist jobs perth", "seed": "Dentist Jobs", "target": "Perth", "au_volume": 210},
+    {"keyword": "psychology jobs perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 170},
+    {"keyword": "psychology jobs perth wa", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 170},
+    {"keyword": "melbourne psychology jobs", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 170},
+    {"keyword": "dentist jobs sydney", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 170},
+    {"keyword": "dentist jobs adelaide", "seed": "Dentist Jobs", "target": "Adelaide", "au_volume": 170},
+    {"keyword": "dentist brisbane jobs", "seed": "Dentist Jobs", "target": "Brisbane", "au_volume": 170},
+    {"keyword": "dentist jobs perth wa", "seed": "Dentist Jobs", "target": "Perth", "au_volume": 170},
+    {"keyword": "dentist jobs in sydney australia", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 140},
+    {"keyword": "dentist jobs sydney australia", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 140},
+    {"keyword": "dentist adelaide jobs", "seed": "Dentist Jobs", "target": "Adelaide", "au_volume": 140},
+    {"keyword": "psychology jobs in perth australia", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 110},
+    {"keyword": "dentist job adelaide", "seed": "Dentist Jobs", "target": "Adelaide", "au_volume": 110},
+    {"keyword": "psychology jobs in perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 90},
+    {"keyword": "dentist job brisbane", "seed": "Dentist Jobs", "target": "Brisbane", "au_volume": 90},
+    {"keyword": "psychology jobs in melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 70},
+    {"keyword": "psychology jobs canberra", "seed": "Psychology Jobs", "target": "Canberra", "au_volume": 70},
+    {"keyword": "dentist job melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 70},
+    {"keyword": "dentist jobs gold coast", "seed": "Dentist Jobs", "target": "Gold Coast", "au_volume": 70},
+    {"keyword": "jobs psychology melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 50},
+    {"keyword": "dentist job in sydney", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 50},
+    {"keyword": "melbourne dentist jobs", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 50},
+    {"keyword": "sydney dentist jobs", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 50},
+    {"keyword": "dentist job sydney", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 50},
+    {"keyword": "dentist job perth", "seed": "Dentist Jobs", "target": "Perth", "au_volume": 50},
+    {"keyword": "dentist jobs hobart", "seed": "Dentist Jobs", "target": "Hobart", "au_volume": 50},
+    {"keyword": "dentist jobs in melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 40},
+    {"keyword": "dentist jobs victoria", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 40},
+    {"keyword": "dentist job victoria", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 30},
+    {"keyword": "dentist jobs in sydney", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 30},
+    {"keyword": "adelaide dentist jobs", "seed": "Dentist Jobs", "target": "Adelaide", "au_volume": 30},
+    {"keyword": "dentist job gold coast", "seed": "Dentist Jobs", "target": "Gold Coast", "au_volume": 30},
+    {"keyword": "psychology assistant jobs perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 20},
+    {"keyword": "psychology graduate jobs perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 20},
+    {"keyword": "psychology jobs wa", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 20},
+    {"keyword": "psychology jobs western australia", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 20},
+    {"keyword": "psychology assistant jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "psychology research assistant jobs brisbane", "seed": "Psychology Jobs", "target": "Brisbane", "au_volume": 20},
+    {"keyword": "psychology research assistant jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "psychology research assistant jobs perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 20},
+    {"keyword": "psychology research assistant jobs sydney", "seed": "Psychology Jobs", "target": "Sydney", "au_volume": 20},
+    {"keyword": "psychology research jobs sydney", "seed": "Psychology Jobs", "target": "Sydney", "au_volume": 20},
+    {"keyword": "psychology graduate jobs brisbane", "seed": "Psychology Jobs", "target": "Brisbane", "au_volume": 20},
+    {"keyword": "psychology graduate jobs in melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "psychology graduate jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "psychology graduate jobs sydney", "seed": "Psychology Jobs", "target": "Sydney", "au_volume": 20},
+    {"keyword": "psychology jobs victoria", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "psychology student jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "seek psychology jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "forensic psychology jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "psychology jobs qld", "seed": "Psychology Jobs", "target": "Brisbane", "au_volume": 20},
+    {"keyword": "psychology jobs queensland", "seed": "Psychology Jobs", "target": "Brisbane", "au_volume": 20},
+    {"keyword": "psychology reception jobs brisbane", "seed": "Psychology Jobs", "target": "Brisbane", "au_volume": 20},
+    {"keyword": "psychology reception jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "psychology receptionist jobs brisbane", "seed": "Psychology Jobs", "target": "Brisbane", "au_volume": 20},
+    {"keyword": "psychology receptionist jobs sydney", "seed": "Psychology Jobs", "target": "Sydney", "au_volume": 20},
+    {"keyword": "psychiatrist jobs melbourne", "seed": "Psychiatrist Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "dentist job search melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "dentist job search sydney", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 20},
+    {"keyword": "dentist jobs in launceston australia", "seed": "Dentist Jobs", "target": "Launceston", "au_volume": 20},
+    {"keyword": "dentist jobs in new south wales australia", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 20},
+    {"keyword": "dentist jobs nsw", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 20},
+    {"keyword": "dentist jobs queensland", "seed": "Dentist Jobs", "target": "Brisbane", "au_volume": 20},
+    {"keyword": "graduate dentist jobs melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "graduate dentist jobs sydney", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 20},
+    {"keyword": "seek dentist jobs melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "dentist jobs in adelaide", "seed": "Dentist Jobs", "target": "Adelaide", "au_volume": 20},
+    {"keyword": "dentist jobs in south australia", "seed": "Dentist Jobs", "target": "Adelaide", "au_volume": 20},
+    {"keyword": "dentist jobs south australia", "seed": "Dentist Jobs", "target": "Adelaide", "au_volume": 20},
+    {"keyword": "graduate psychology jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "clincal psychology jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "psychology melbourne vic jobs", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "psychology receptionist jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "jobs psychiatrist melbourne", "seed": "Psychiatrist Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "dentist jobs in brisbane australia", "seed": "Dentist Jobs", "target": "Brisbane", "au_volume": 10},
+    {"keyword": "dentist jobs in melbourne australia", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "dentist jobs in nsw", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 10},
+    {"keyword": "dentist jobs in queensland", "seed": "Dentist Jobs", "target": "Brisbane", "au_volume": 10},
+    {"keyword": "dentist jobs in victoria", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "dentist jobs in victoria australia", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "dentist sydney nsw jobs", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 10},
+    {"keyword": "nsw health dentist jobs", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 10},
+    {"keyword": "dentist jobs in adelaide australia", "seed": "Dentist Jobs", "target": "Adelaide", "au_volume": 10},
+    {"keyword": "dentist jobs in the gold coast australia", "seed": "Dentist Jobs", "target": "Gold Coast", "au_volume": 10},
+    {"keyword": "dentist jobs orange county", "seed": "Dentist Jobs", "target": "Orange", "au_volume": 10},
+    {"keyword": "dentist melbourne vic jobs", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "bachelor of psychology jobs perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "environmental psychology jobs perth government", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "forensic psychology jobs perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "graduate jobs perth bachelor of psychology", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "graduate psychology jobs perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "job seek psychology perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "jobs indeed perth psychology", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "jobs indeed psychology perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "jobs perth business psychology", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "organisational psychology jobs perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "positive psychology jobs perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychology degree graduate jobs perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychology degree jobs perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychology degree jobs perth wa", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychology graduate jobs perth wa", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychology intake officer job qld", "seed": "Psychology Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "psychology job perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychology jobs australia perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychology jobs in resource sector perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychology jobs mining western australia", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychology jobs perth scotland", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychology jobs perth western australia", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychology jobs wa government", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychology jobs wa public sector", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychology perth job", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychology reception jobs perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychology research jobs perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychology student jobs perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychology undergraduate jobs perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "seek psychology jobs perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "three year psychology degree jobs perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "undergraduate psychology jobs perth", "seed": "Psychology Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychology research assistant job brisbane", "seed": "Psychology Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "psychology research assistant job melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychology research assistant jobs adelaide", "seed": "Psychology Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "psychology research assistant jobs canberra", "seed": "Psychology Jobs", "target": "Canberra", "au_volume": 0},
+    {"keyword": "psychology research assistant jobs gold coast", "seed": "Psychology Jobs", "target": "Gold Coast", "au_volume": 0},
+    {"keyword": "psychology research assistant jobs melbourne seek", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychology research jobs brisbane", "seed": "Psychology Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "psychology research jobs canberra", "seed": "Psychology Jobs", "target": "Canberra", "au_volume": 0},
+    {"keyword": "research assistant jobs brisbane psychology", "seed": "Psychology Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "research assistant jobs psychology brisbane", "seed": "Psychology Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "research assistant psychology jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "research assistant psychology jobs sydney", "seed": "Psychology Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "research assistant psychology melbourne jobs", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "research assistant psychology sydney jobs", "seed": "Psychology Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "graduate jobs psychology sydney", "seed": "Psychology Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "graduate psychology jobs brisbane", "seed": "Psychology Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "graduate psychology jobs in melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "graduate psychology jobs sydney", "seed": "Psychology Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "graduate psychology melbourne jobs", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "organisational psychology graduate jobs queensland", "seed": "Psychology Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "psychology graduate job melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychology graduate jobs canberra", "seed": "Psychology Jobs", "target": "Canberra", "au_volume": 0},
+    {"keyword": "psychology graduate jobs nsw", "seed": "Psychology Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "psychology graduate jobs sydney salary", "seed": "Psychology Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "psychology graduate jobs victoria", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychology gradute jobs brisbane", "seed": "Psychology Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "reddit psychology bachelor graduate melbourne job", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "assistant psychology job melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "clinical psychology jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "health psychology jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "melbourne clinical psychology jobs", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "melbourne psychology graduate jobs", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "melbourne psychology jobs website", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "melbourne psychology related jobs", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychology assessment jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychology consultancy jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychology job melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychology job with anz bank melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychology jobs in victoria australia", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychology jobs melbourne gumtree", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychology jobs melbourne salary", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychology jobs melbourne seek", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychology jobs west melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychology lecturer jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychology related jobs in melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychology related jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "seek psychology social work counselling jobs in melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "forensic psychology entry level jobs melbourne", "seed": "Psychology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "forensic psychology jobs albany ny", "seed": "Psychology Jobs", "target": "Albany", "au_volume": 0},
+    {"keyword": "forensic psychology jobs brisbane", "seed": "Psychology Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "forensic psychology jobs sydney", "seed": "Psychology Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "job prospects for psychology queensland", "seed": "Psychology Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "jobs with a bachelor degree in psychology gold coast", "seed": "Psychology Jobs", "target": "Gold Coast", "au_volume": 0},
+    {"keyword": "psychology and counselling jobs brisbane", "seed": "Psychology Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "clinical psychiatrist jobs victoria", "seed": "Psychiatrist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "consultant psychiatrist job vacany in lismore", "seed": "Psychiatrist Jobs", "target": "Lismore", "au_volume": 0},
+    {"keyword": "consultant psychiatrist jobs melbourne", "seed": "Psychiatrist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "private psychiatrist jobs melbourne", "seed": "Psychiatrist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychiatrist job in alice spring hospital jobs in northern territory", "seed": "Psychiatrist Jobs", "target": "Darwin", "au_volume": 0},
+    {"keyword": "psychiatrist job melbourne", "seed": "Psychiatrist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychiatrist job seattle wa", "seed": "Psychiatrist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "psychiatrist jobart tas", "seed": "Psychiatrist Jobs", "target": "Hobart", "au_volume": 0},
+    {"keyword": "psychiatrist jobs adelaide", "seed": "Psychiatrist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "psychiatrist jobs aus vic", "seed": "Psychiatrist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychiatrist jobs hobart", "seed": "Psychiatrist Jobs", "target": "Hobart", "au_volume": 0},
+    {"keyword": "psychiatrist jobs melbourne australia", "seed": "Psychiatrist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychiatrist jobs portland vic", "seed": "Psychiatrist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychiatrist jobs queensland", "seed": "Psychiatrist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "psychiatrist jobs south australia", "seed": "Psychiatrist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "psychiatrist jobs sydney seek", "seed": "Psychiatrist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "psychiatrist jobs tasmania", "seed": "Psychiatrist Jobs", "target": "Hobart", "au_volume": 0},
+    {"keyword": "psychiatrist jobs victoria", "seed": "Psychiatrist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "psychiatrist jobs wa", "seed": "Psychiatrist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "ada dentist jobs sydney", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "assistant dentist jobs sydney", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "casual faculty of dentistry jobs melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "dentist assistant jobs sydney", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "dentist job melbourne sundays", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "dentist job nsw", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "dentist job opportunity melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "dentist job rural south east nsw", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "dentist job young nsw", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "dentist jobs australia sydney", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "dentist jobs brisbane australia", "seed": "Dentist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "dentist jobs health fund nsw", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "dentist jobs in queensland australia", "seed": "Dentist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "dentist jobs in regional nsw", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "dentist jobs melbourne salary", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "dentist jobs nsw health", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "dentist jobs private practice northern nsw", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "dentist jobs public nsw", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "dentist jobs richmond nsw", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "dentist jobs sydney bupa pay", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "dentist jobs victoria australia", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "dentist jobsoutside sydney", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "dentist locum jobs melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "dentistry jobs info for kids victoria australia", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "dentistry jobs information for kids victoria australia", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "dentistry jobs melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "dentists jobs melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "experteeth dentist sydney job", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "faculty of dentistry jobs melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "general dentist jobs melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "general dentist jobs sydney", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "graduate dentist job victoria", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "graduate dentist jobs victoria", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "graduate dentist victoria jobs", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "house job sydney dentist", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "indeed dentist jobs melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "job dentist melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "job for a dentist in sydney", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "locum dentist jobs melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "locum dentist jobs nsw", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "locum dentist jobs-melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "locum dentist jobw melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "melbourne 3 month dentist job", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "new grad dentist jobs in nsw", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "nsw dentist jobs", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "nsw health dentist job", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "nsw health jobs dentist", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "nt health dentist job", "seed": "Dentist Jobs", "target": "Darwin", "au_volume": 0},
+    {"keyword": "pay for non clinical dentist jobs sydney", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "public dentist jobs melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "seek dentist job melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "seek dentist job sydney", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "seek dentist jobs sydney", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "sunday dentist jobs sydney", "seed": "Dentist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "ada dentist jobs adelaide", "seed": "Dentist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "adelaide job dentist", "seed": "Dentist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "australia queensland dentist job ada", "seed": "Dentist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "dentist assistant jobs adelaide", "seed": "Dentist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "dentist job search adelaide", "seed": "Dentist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "dentist job south brisbane", "seed": "Dentist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "dentist jobs act", "seed": "Dentist Jobs", "target": "Canberra", "au_volume": 0},
+    {"keyword": "dentist jobs sa", "seed": "Dentist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "dentist jobs seattle wa", "seed": "Dentist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "dentist jobs south brisbane", "seed": "Dentist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "dentists jobs adelaide", "seed": "Dentist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "disha jobanputra dentist adelaide", "seed": "Dentist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "disha jobanputra dentist adelaide linkedin", "seed": "Dentist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "jora adelaide dentist job", "seed": "Dentist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "sa health dentist jobs", "seed": "Dentist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "south brisbane dentist jobs", "seed": "Dentist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "dentist gold coast queensland health jobs", "seed": "Dentist Jobs", "target": "Gold Coast", "au_volume": 0},
+    {"keyword": "dentist job search gold coast", "seed": "Dentist Jobs", "target": "Gold Coast", "au_volume": 0},
+    {"keyword": "dentist jobs gold coast graduate", "seed": "Dentist Jobs", "target": "Gold Coast", "au_volume": 0},
+    {"keyword": "dentist jobs in gold coast", "seed": "Dentist Jobs", "target": "Gold Coast", "au_volume": 0},
+    {"keyword": "dentist jobs in orange county", "seed": "Dentist Jobs", "target": "Orange", "au_volume": 0},
+    {"keyword": "dentist jobs qld", "seed": "Dentist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "dentist orange county jobs", "seed": "Dentist Jobs", "target": "Orange", "au_volume": 0},
+    {"keyword": "gold coast dentist jobs", "seed": "Dentist Jobs", "target": "Gold Coast", "au_volume": 0},
+    {"keyword": "graduate dentist jobs qld", "seed": "Dentist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "queensland dentist jobs", "seed": "Dentist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "dentist assistant jobs brisbane", "seed": "Dentist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "dentist assistant jobs canberra", "seed": "Dentist Jobs", "target": "Canberra", "au_volume": 0},
+    {"keyword": "dentist assistant jobs in canberra", "seed": "Dentist Jobs", "target": "Canberra", "au_volume": 0},
+    {"keyword": "dentist assistant jobs melbourne", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "dentist jobs melbourne ada", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "melbourne 3 month dentist job contractor", "seed": "Dentist Jobs", "target": "Melbourne", "au_volume": 0}
+  ],
+  "AHP":[
+    {"keyword": "physio jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 320},
+    {"keyword": "physio jobs perth", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 320},
+    {"keyword": "physio jobs brisbane", "seed": "Physiotherapist Jobs", "target": "Brisbane", "au_volume": 260},
+    {"keyword": "physio jobs adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 260},
+    {"keyword": "physio jobs sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 210},
+    {"keyword": "occupational therapist jobs in adelaide sa", "seed": "Occupational Therapist Jobs", "target": "Adelaide", "au_volume": 170},
+    {"keyword": "speech pathology jobs melbourne australia", "seed": "Speech Pathology Jobs", "target": "Melbourne", "au_volume": 170},
+    {"keyword": "speech pathology jobs nsw health", "seed": "Speech Pathology Jobs", "target": "Sydney", "au_volume": 170},
+    {"keyword": "occupational therapist jobs perth wa", "seed": "Occupational Therapist Jobs", "target": "Perth", "au_volume": 140},
+    {"keyword": "physio jobs gold coast", "seed": "Physiotherapist Jobs", "target": "Gold Coast", "au_volume": 140},
+    {"keyword": "speech pathology jobs sydney", "seed": "Speech Pathology Jobs", "target": "Sydney", "au_volume": 140},
+    {"keyword": "occupational therapist jobs melbourne", "seed": "Occupational Therapist Jobs", "target": "Melbourne", "au_volume": 110},
+    {"keyword": "physio jobs canberra", "seed": "Physiotherapist Jobs", "target": "Canberra", "au_volume": 110},
+    {"keyword": "speech pathology jobs perth", "seed": "Speech Pathology Jobs", "target": "Perth", "au_volume": 110},
+    {"keyword": "physiotherapist jobs adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 90},
+    {"keyword": "physiotherapist jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 90},
+    {"keyword": "physio jobs sunshine coast", "seed": "Physiotherapist Jobs", "target": "Sunshine Coast", "au_volume": 90},
+    {"keyword": "speech pathologist jobs melbourne", "seed": "Speech Pathologist Jobs", "target": "Melbourne", "au_volume": 90},
+    {"keyword": "occupational therapist jobs perth", "seed": "Occupational Therapist Jobs", "target": "Perth", "au_volume": 70},
+    {"keyword": "podiatrist jobs melbourne", "seed": "Podiatrist Jobs", "target": "Melbourne", "au_volume": 70},
+    {"keyword": "physiotherapist jobs sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 70},
+    {"keyword": "physio jobs newcastle", "seed": "Physiotherapist Jobs", "target": "Newcastle", "au_volume": 70},
+    {"keyword": "physiotherapist job sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 50},
+    {"keyword": "melbourne physio jobs", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 50},
+    {"keyword": "perth physio jobs", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 50},
+    {"keyword": "physiotherapist jobs western australia", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 50},
+    {"keyword": "speech pathologist jobs sydney", "seed": "Speech Pathologist Jobs", "target": "Sydney", "au_volume": 50},
+    {"keyword": "adelaide speech pathology jobs", "seed": "Speech Pathology Jobs", "target": "Adelaide", "au_volume": 50},
+    {"keyword": "speech pathology jobs melbourne", "seed": "Speech Pathology Jobs", "target": "Melbourne", "au_volume": 50},
+    {"keyword": "podiatrist jobs sydney", "seed": "Podiatrist Jobs", "target": "Sydney", "au_volume": 40},
+    {"keyword": "physiotherapist jobs in melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 40},
+    {"keyword": "speech pathology jobs in melbourne", "seed": "Speech Pathology Jobs", "target": "Melbourne", "au_volume": 40},
+    {"keyword": "podiatrist jobs in perth wa", "seed": "Podiatrist Jobs", "target": "Perth", "au_volume": 30},
+    {"keyword": "podiatrist jobs perth", "seed": "Podiatrist Jobs", "target": "Perth", "au_volume": 30},
+    {"keyword": "physio and ot jobs regional nsw 2026", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 30},
+    {"keyword": "physiotherapist hospital jobs sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 30},
+    {"keyword": "speech pathologist jobs adelaide", "seed": "Speech Pathologist Jobs", "target": "Adelaide", "au_volume": 30},
+    {"keyword": "physio job sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 20},
+    {"keyword": "physio jobs qld", "seed": "Physiotherapist Jobs", "target": "Brisbane", "au_volume": 20},
+    {"keyword": "physio jobs sydney seek", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 20},
+    {"keyword": "physio jobs victoria", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "physiotherapist jobs canberra", "seed": "Physiotherapist Jobs", "target": "Canberra", "au_volume": 20},
+    {"keyword": "physiotherapist jobs in sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 20},
+    {"keyword": "physiotherapist jobs victoria bc", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "physiotherapist sydney jobs", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 20},
+    {"keyword": "physio reception jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "physio assistant jobs sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 20},
+    {"keyword": "physiotherapist assistant jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "physiotherapist assistant jobs sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 20},
+    {"keyword": "physio assistant jobs perth", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 20},
+    {"keyword": "physio jobs nsw", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 20},
+    {"keyword": "speech pathologist jobs brisbane", "seed": "Speech Pathologist Jobs", "target": "Brisbane", "au_volume": 20},
+    {"keyword": "speech pathologist jobs gympie", "seed": "Speech Pathologist Jobs", "target": "Gympie", "au_volume": 20},
+    {"keyword": "speech pathology assistant jobs sydney", "seed": "Speech Pathology Jobs", "target": "Sydney", "au_volume": 20},
+    {"keyword": "graduate speech pathology jobs melbourne", "seed": "Speech Pathology Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "speech pathology assistant jobs melbourne", "seed": "Speech Pathology Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "speech pathology jobs bendigo", "seed": "Speech Pathology Jobs", "target": "Bendigo", "au_volume": 20},
+    {"keyword": "speech pathology jobs victoria", "seed": "Speech Pathology Jobs", "target": "Melbourne", "au_volume": 20},
+    {"keyword": "education queensland speech pathology jobs", "seed": "Speech Pathology Jobs", "target": "Brisbane", "au_volume": 20},
+    {"keyword": "occupational therapist jobs victoria", "seed": "Occupational Therapist Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "physiotherapist adelaide region sa jobs", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 10},
+    {"keyword": "weekend physiotherapist jobs sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 10},
+    {"keyword": "physio mentor job melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "physiotherapist melbourne vic jobs", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "aged care physiotherapy jobs sydney", "seed": "Aged Care Physio Jobs", "target": "Sydney", "au_volume": 10},
+    {"keyword": "speech pathologist melbourne vic jobs", "seed": "Speech Pathologist Jobs", "target": "Melbourne", "au_volume": 10},
+    {"keyword": "speech pathologist sydney nsw jobs", "seed": "Speech Pathologist Jobs", "target": "Sydney", "au_volume": 10},
+    {"keyword": "occupational therapist job vacancies melbourne", "seed": "Occupational Therapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "occupational therapist jobs act", "seed": "Occupational Therapist Jobs", "target": "Canberra", "au_volume": 0},
+    {"keyword": "occupational therapist jobs near albany ny", "seed": "Occupational Therapist Jobs", "target": "Albany", "au_volume": 0},
+    {"keyword": "graduate occupational therapist jobs melbourne", "seed": "Occupational Therapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "occupational therapist job melbourne", "seed": "Occupational Therapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "occupational therapist jobs melbourne australia", "seed": "Occupational Therapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "paediatric ot jobs melbourne", "seed": "Paediatric OT Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "mental health ot jobs melbourne", "seed": "Mental Health OT Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "melbourne podiatrist jobs", "seed": "Podiatrist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "perth podiatrist jobs", "seed": "Podiatrist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "podiatrist allied health professional job perth", "seed": "Podiatrist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "podiatrist assistant jobs sydney", "seed": "Podiatrist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "podiatrist job in sydney", "seed": "Podiatrist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "podiatrist job melbourne", "seed": "Podiatrist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "podiatrist job victoria", "seed": "Podiatrist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "podiatrist jobs bendigo", "seed": "Podiatrist Jobs", "target": "Bendigo", "au_volume": 0},
+    {"keyword": "podiatrist jobs queensland", "seed": "Podiatrist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "podiatrist jobs vic", "seed": "Podiatrist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "podiatrist jobs victoria", "seed": "Podiatrist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "podiatrist jobs western australia", "seed": "Podiatrist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "podiatrist perth jobs", "seed": "Podiatrist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "podiatrist sydney job", "seed": "Podiatrist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "podiatrist sydney nsw jobs", "seed": "Podiatrist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "sydney podiatrist jobs", "seed": "Podiatrist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "act physiotherapist level 1 job", "seed": "Physiotherapist Jobs", "target": "Canberra", "au_volume": 0},
+    {"keyword": "adelaide physio job hospital", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "adelaide physio jobs", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "aged care physio jobs adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "aged care physio jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "aged care physio jobs sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "aged care physiotherapist jobs adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "aged care physiotherapist jobs sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "casual physio jobs sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "community physio jobs queensland health", "seed": "Physiotherapist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "department of employment australia job outlook physiotherapists canberra", "seed": "Physiotherapist Jobs", "target": "Canberra", "au_volume": 0},
+    {"keyword": "graduate physio jobs sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "graduate physiotherapist jobs queensland", "seed": "Physiotherapist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "hospital job physiotherapist adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "hospital physio jobs adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "https www.physioboard.com.au job 193 full-time-physio-brisbane-south", "seed": "Physiotherapist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "indeed paediatric physio jobs victoria", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "indeed physio jobs sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "job alert hospital physiotherapist brisbane", "seed": "Physiotherapist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "jobs adelaide physiotherapist", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "jobs indeed adelaide physiotherapist", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "jobseek sydney physiotherapist", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "limited registered physiotherapist jobs in adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "locum physio jobs adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "locum physio jobs brisbane", "seed": "Physiotherapist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "locum physio jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "locum physio jobs perth", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "locum physio jobs sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "locum physiotherapist job sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "locum physiotherapist jobs sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "physio admin jobs adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "physio aide jobs adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "physio assistant jobs inner west plt sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "physio assistant jobs western sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "physio assistant jobs western sydney indeed", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "physio contract jobs sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "physio hospital job victoria", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "physio job adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "physio jobs in adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "physio jobs in south australia", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "physio jobs qld health", "seed": "Physiotherapist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "physio jobs sa", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "physio jobs south australia", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "physio jobs sydney australia", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "physio jobs sydney new grad", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "physio reception jobs adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "physio receptionist jobs adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "physio therapy jobs sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "physiotherapist adelaide jobs", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "physiotherapist job canberra", "seed": "Physiotherapist Jobs", "target": "Canberra", "au_volume": 0},
+    {"keyword": "physiotherapist job in sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "physiotherapist job part time sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "physiotherapist jobs in adelaide australia", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "physiotherapist jobs queensland health", "seed": "Physiotherapist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "physiotherapist jobs sa", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "physiotherapist jobs south australia", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "physiotherapist jobs victoria", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "qld health physio jobs", "seed": "Physiotherapist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "queensland health jobs physio", "seed": "Physiotherapist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "queensland health physio jobs", "seed": "Physiotherapist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "queensland health physiotherapist jobs", "seed": "Physiotherapist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "seek locum physio jobs nsw", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "seek physio job adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "seek physio jobs adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "seek physio jobs sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "senior physiotherapist jobs adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "sydney physio job", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "sydney physiotherapist job", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "sydney physiotherapist jobs", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "trainee physiotherapist jobs queensland", "seed": "Physiotherapist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "womens health physio jobs sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "casual physio jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "graduate physiotherapist jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "hospital physio jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "how many jobs are there as a physio in melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "indeed physio jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "jobs for limited registered physio in melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "limited registration physio jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "melbourne city fc physio job", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "melbourne hospital physiotherapist jobs", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "melbourne jobs research physiotherapist", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "paediatric physio jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "paediatric physiotherapist jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "part tikme physio jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "physio assistant jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "physio chiro jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "physio hospital jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "physio job melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "physio jobs in melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "physio jobs melbourne apa", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "physio jobs melbourne australia", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "physio jobs melbourne salary", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "physiotherapist aide jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "physiotherapist epc health melbourne jobs", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "physiotherapist job melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "physiotherapist jobs melbourne salary", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "physiotherapist receptionist jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "sports physio jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "the best job sites for physiotherapists melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "vic health physio jobs", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "volunteer physio jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "volunteer physio student jobs melbourne", "seed": "Physiotherapist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "physio assistant job brisbane", "seed": "Physiotherapist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "physio assistant jobs brisbane", "seed": "Physiotherapist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "physio assistant jobs in brisbane", "seed": "Physiotherapist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "physiotherapist assistant jobs adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "physiotherapist assistant jobs in adelaide", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "physiotherapist assistant jobs newcastle", "seed": "Physiotherapist Jobs", "target": "Newcastle", "au_volume": 0},
+    {"keyword": "sa health jobs physio assistant", "seed": "Physiotherapist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "aged care physio jobs perth", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "commonwealth physio jobs perth", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "graduate physiotherapist job sydney", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "graduate physiotherapist jobs perth", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "inpatient physiotherapist jobs wa", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "jobs physio hospital wa", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "jobs wa physiotherapist", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "nsw full time physiotherapists jobs", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "nsw health jobs physio", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "nsw health physio jobs", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "nsw physiotherapist jobs", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "nt jobs physiotherapist", "seed": "Physiotherapist Jobs", "target": "Darwin", "au_volume": 0},
+    {"keyword": "paediatric physio role jobs perth", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "paediatric physiotherapist job nsw", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "paediatric physiotherapist jobs perth", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "part time physio jobs perth", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "perth physio jobs aged care", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "perth physio jobs aged carr", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "perth physiotherapist job", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "physio assistant jobs nsw", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "physio jobs in perth", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "physio jobs nsw health", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "physio jobs perth apa", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "physio jobs western australia", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "physio nsw job board", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "physiotherapist all sydney nsw jobs", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "physiotherapist hospital jobs western australia", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "physiotherapist job description nsw", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "physiotherapist job nsw", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "physiotherapist job rugby nsw", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "physiotherapist jobs nsw", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "physiotherapist jobs perth wa", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "physiotherapist perth wa jobs", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "physiotherapist queensland health job resume example", "seed": "Physiotherapist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "physiotherapist reception jobs tweed heads", "seed": "Physiotherapist Jobs", "target": "Tweed Heads", "au_volume": 0},
+    {"keyword": "physiotherapist sydney nsw jobs", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "pilates physiotherapist jobs perth wa", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "rehab physio perth jobs", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "rugby nsw physio jobs", "seed": "Physiotherapist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "weekend physio jobs perth", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "weekend physiotherapist job perth", "seed": "Physiotherapist Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "aged care physiotherapy jobs adelaide", "seed": "Aged Care Physio Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "aged care physiotherapy jobs perth", "seed": "Aged Care Physio Jobs", "target": "Perth", "au_volume": 0},
+    {"keyword": "aged care physiotherapy jobs melbourne", "seed": "Aged Care Physio Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "speech pathologist assistant jobs south australia", "seed": "Speech Pathologist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "department of education and training victoria speech pathologist job", "seed": "Speech Pathologist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "speech language pathologist job melbourne", "seed": "Speech Pathologist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "speech pathologist job melbourne fl", "seed": "Speech Pathologist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "speech pathologist melbourne jobs", "seed": "Speech Pathologist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "speech pathologists jobs in melbourne with 482 visa sponsorship", "seed": "Speech Pathologist Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "autism queensland speech pathologist job", "seed": "Speech Pathologist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "gariatric speech pathologist job brisbane", "seed": "Speech Pathologist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "graduate speech pathologist jobs nsw", "seed": "Speech Pathologist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "jobs supporting speech pathologists brisbane", "seed": "Speech Pathologist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "lizard speech pathologist jobs adelaide", "seed": "Speech Pathologist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "paediatric speech pathologist adelaide jobs", "seed": "Speech Pathologist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "sa frontline speech pathologist job", "seed": "Speech Pathologist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "speech language pathologist job sydney", "seed": "Speech Pathologist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "speech pathologist assistant jobs sydney", "seed": "Speech Pathologist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "speech pathologist brisbane jobs", "seed": "Speech Pathologist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "speech pathologist cairns job", "seed": "Speech Pathologist Jobs", "target": "Cairns", "au_volume": 0},
+    {"keyword": "speech pathologist griffith job", "seed": "Speech Pathologist Jobs", "target": "Griffith", "au_volume": 0},
+    {"keyword": "speech pathologist griffith job iworkfornsw", "seed": "Speech Pathologist Jobs", "target": "Griffith", "au_volume": 0},
+    {"keyword": "speech pathologist job in sydney", "seed": "Speech Pathologist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "speech pathologist job mackay", "seed": "Speech Pathologist Jobs", "target": "Mackay", "au_volume": 0},
+    {"keyword": "speech pathologist job orange", "seed": "Speech Pathologist Jobs", "target": "Orange", "au_volume": 0},
+    {"keyword": "speech pathologist job prospects sydney", "seed": "Speech Pathologist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "speech pathologist job queensland health", "seed": "Speech Pathologist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "speech pathologist job sydney", "seed": "Speech Pathologist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "speech pathologist jobs cairns", "seed": "Speech Pathologist Jobs", "target": "Cairns", "au_volume": 0},
+    {"keyword": "speech pathologist jobs gold coast", "seed": "Speech Pathologist Jobs", "target": "Gold Coast", "au_volume": 0},
+    {"keyword": "speech pathologist jobs nsw health", "seed": "Speech Pathologist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "speech pathologist jobs qld", "seed": "Speech Pathologist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "speech pathologist jobs rockhampton", "seed": "Speech Pathologist Jobs", "target": "Rockhampton", "au_volume": 0},
+    {"keyword": "speech pathologist jobs sydney australia", "seed": "Speech Pathologist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "speech pathologist jobs sydney nsw", "seed": "Speech Pathologist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "speech pathologist jobs townsville", "seed": "Speech Pathologist Jobs", "target": "Townsville", "au_volume": 0},
+    {"keyword": "speech pathologist queensland health jobs", "seed": "Speech Pathologist Jobs", "target": "Brisbane", "au_volume": 0},
+    {"keyword": "speech pathologist south australia health job", "seed": "Speech Pathologist Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "speech pathologist sydney jobs", "seed": "Speech Pathologist Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "graduate speech pathology jobs sydney", "seed": "Speech Pathology Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "orange speech pathology job", "seed": "Speech Pathology Jobs", "target": "Orange", "au_volume": 0},
+    {"keyword": "speech pathology jobs act", "seed": "Speech Pathology Jobs", "target": "Canberra", "au_volume": 0},
+    {"keyword": "entry level speech pathology assistant jobs sydney", "seed": "Speech Pathology Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "speech pathology assistant jobs nsw", "seed": "Speech Pathology Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "speech-language pathology assistant jobs sydney", "seed": "Speech Pathology Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "speech-language pathology assistants jobs sydney", "seed": "Speech Pathology Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "speechlanguage pathology assistant jobs sydney", "seed": "Speech Pathology Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "speechlanguage pathology assistants jobs sydney", "seed": "Speech Pathology Jobs", "target": "Sydney", "au_volume": 0},
+    {"keyword": "bendigo education speech pathology jobs", "seed": "Speech Pathology Jobs", "target": "Bendigo", "au_volume": 0},
+    {"keyword": "indeed speech pathology jobs melbourne", "seed": "Speech Pathology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "melbourne hospital new grad speech pathology jobs", "seed": "Speech Pathology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "melbourne hospital speech pathology jobs", "seed": "Speech Pathology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "melbourne speech pathology jobs", "seed": "Speech Pathology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "new graduate speech pathology jobs melbourne", "seed": "Speech Pathology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "part time speech pathology jobs melbourne", "seed": "Speech Pathology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "seek speech pathology jobs adelaide", "seed": "Speech Pathology Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "seek speech pathology jobs melbourne", "seed": "Speech Pathology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "speech pathology graduate job melbourne", "seed": "Speech Pathology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "speech pathology graduate jobs melbourne", "seed": "Speech Pathology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "speech pathology jobs adelaide health", "seed": "Speech Pathology Jobs", "target": "Adelaide", "au_volume": 0},
+    {"keyword": "speech pathology jobs melbourne fl", "seed": "Speech Pathology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "speech pathology jobs melbourne victoria", "seed": "Speech Pathology Jobs", "target": "Melbourne", "au_volume": 0},
+    {"keyword": "speech pathology jobs mildura", "seed": "Speech Pathology Jobs", "target": "Mildura", "au_volume": 0},
+    {"keyword": "speech pathology jobs warrnambool", "seed": "Speech Pathology Jobs", "target": "Warrnambool", "au_volume": 0},
+    {"keyword": "speech pathology melbourne jobs", "seed": "Speech Pathology Jobs", "target": "Melbourne", "au_volume": 0}
+  ],
+"SIMG":[{"keyword": "gp jobs sydney", "seed": "GP Jobs", "target": "Sydney", "au_volume": 320, "from_countries": [{"c": "India", "v": 10}, {"c": "Ireland", "v": 20}, {"c": "New Zealand", "v": 20}, {"c": "Sudan", "v": 320}, {"c": "United States", "v": 320}, {"c": "Brazil", "v": 10}, {"c": "Canada", "v": 20}]}, {"keyword": "resident medical officer jobs australia", "seed": "Medical Jobs Australia", "target": "Australia", "au_volume": 170, "from_countries": [{"c": "India", "v": 170}, {"c": "Pakistan", "v": 20}, {"c": "Ireland", "v": 10}, {"c": "Malaysia", "v": 10}, {"c": "Brazil", "v": 20}, {"c": "Germany", "v": 10}]}, {"keyword": "doctor jobs in australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 140, "from_countries": [{"c": "India", "v": 140}, {"c": "South Africa", "v": 20}, {"c": "Philippines", "v": 20}, {"c": "Pakistan", "v": 20}, {"c": "Sri Lanka", "v": 20}, {"c": "Ireland", "v": 20}, {"c": "New Zealand", "v": 20}, {"c": "Bangladesh", "v": 20}, {"c": "Nepal", "v": 20}, {"c": "Malaysia", "v": 20}, {"c": "Egypt", "v": 20}, {"c": "Sudan", "v": 50}, {"c": "Dubai", "v": 20}, {"c": "United States", "v": 50}, {"c": "Brazil", "v": 30}, {"c": "Germany", "v": 20}]}, {"keyword": "gp income australia", "seed": "Locum GP Jobs", "target": "Australia", "au_volume": 110, "from_countries": [{"c": "Sudan", "v": 110}, {"c": "United States", "v": 110}]}, {"keyword": "gp salary australia", "seed": "Locum GP Jobs", "target": "Australia", "au_volume": 110, "from_countries": [{"c": "Sudan", "v": 110}, {"c": "United States", "v": 110}]}, {"keyword": "gp jobs canberra", "seed": "GP Jobs", "target": "Canberra", "au_volume": 90, "from_countries": [{"c": "Sudan", "v": 90}, {"c": "United States", "v": 90}]}, {"keyword": "gp pay australia", "seed": "Locum GP Jobs", "target": "Australia", "au_volume": 90, "from_countries": [{"c": "Sudan", "v": 90}, {"c": "United States", "v": 90}]}, {"keyword": "gp wage australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 90, "from_countries": [{"c": "Sudan", "v": 90}, {"c": "United States", "v": 90}, {"c": "Canada", "v": 20}]}, {"keyword": "gp wages australia", "seed": "Locum GP Jobs", "target": "Australia", "au_volume": 90, "from_countries": [{"c": "Sudan", "v": 90}, {"c": "United States", "v": 90}]}, {"keyword": "gp jobs australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 70, "from_countries": [{"c": "India", "v": 10}, {"c": "South Africa", "v": 10}, {"c": "Philippines", "v": 10}, {"c": "Pakistan", "v": 10}, {"c": "Sri Lanka", "v": 10}, {"c": "Ireland", "v": 10}, {"c": "New Zealand", "v": 10}, {"c": "Bangladesh", "v": 10}, {"c": "Malaysia", "v": 10}, {"c": "Egypt", "v": 10}, {"c": "Sudan", "v": 70}, {"c": "Dubai", "v": 10}, {"c": "United States", "v": 70}, {"c": "Brazil", "v": 40}, {"c": "Germany", "v": 20}]}, {"keyword": "gp jobs newcastle", "seed": "GP Jobs", "target": "Newcastle", "au_volume": 70, "from_countries": [{"c": "United Kingdom", "v": 70}]}, {"keyword": "general practitioner jobs in australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 70, "from_countries": [{"c": "Sudan", "v": 70}, {"c": "United States", "v": 70}]}, {"keyword": "gp jobs in australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 70, "from_countries": [{"c": "Sudan", "v": 70}, {"c": "United States", "v": 70}, {"c": "Brazil", "v": 10}, {"c": "Germany", "v": 20}]}, {"keyword": "general practitioners in australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 50, "from_countries": [{"c": "Sudan", "v": 50}, {"c": "United States", "v": 50}]}, {"keyword": "gp jobs in melbourne australia", "seed": "GP Jobs", "target": "Melbourne", "au_volume": 50, "from_countries": [{"c": "Sudan", "v": 50}, {"c": "United States", "v": 50}, {"c": "Brazil", "v": 10}, {"c": "Germany", "v": 10}]}, {"keyword": "gp jobs sydney australia", "seed": "GP Jobs", "target": "Sydney", "au_volume": 50, "from_countries": [{"c": "Sudan", "v": 50}, {"c": "United States", "v": 50}, {"c": "Brazil", "v": 10}]}, {"keyword": "gp jobs melbourne", "seed": "GP Jobs", "target": "Melbourne", "au_volume": 40, "from_countries": [{"c": "India", "v": 20}, {"c": "Ireland", "v": 20}, {"c": "New Zealand", "v": 20}, {"c": "Sudan", "v": 40}, {"c": "United States", "v": 40}, {"c": "Brazil", "v": 20}]}, {"keyword": "gp jobs brisbane", "seed": "GP Jobs", "target": "Brisbane", "au_volume": 40, "from_countries": [{"c": "India", "v": 10}, {"c": "New Zealand", "v": 30}, {"c": "Sudan", "v": 40}, {"c": "United States", "v": 40}, {"c": "Brazil", "v": 20}, {"c": "Germany", "v": 10}]}, {"keyword": "general practitioner jobs australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 40, "from_countries": [{"c": "India", "v": 20}, {"c": "Pakistan", "v": 20}, {"c": "New Zealand", "v": 20}, {"c": "Malaysia", "v": 20}, {"c": "Egypt", "v": 10}, {"c": "Sudan", "v": 40}, {"c": "United States", "v": 40}, {"c": "Brazil", "v": 20}]}, {"keyword": "general physician jobs australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 40, "from_countries": [{"c": "Sudan", "v": 40}, {"c": "United States", "v": 40}]}, {"keyword": "general practitioner jobs melbourne", "seed": "GP Jobs", "target": "Melbourne", "au_volume": 40, "from_countries": [{"c": "Sudan", "v": 40}, {"c": "United States", "v": 40}, {"c": "Brazil", "v": 10}]}, {"keyword": "gp jobs in tasmania", "seed": "GP Jobs", "target": "Hobart", "au_volume": 40, "from_countries": [{"c": "Sudan", "v": 40}, {"c": "United States", "v": 40}]}, {"keyword": "gp jobs in western australia", "seed": "GP Jobs", "target": "Perth", "au_volume": 40, "from_countries": [{"c": "Sudan", "v": 40}, {"c": "United States", "v": 40}]}, {"keyword": "gp jobs melbourne australia", "seed": "GP Jobs", "target": "Melbourne", "au_volume": 40, "from_countries": [{"c": "Sudan", "v": 40}, {"c": "United States", "v": 40}]}, {"keyword": "life as a gp in australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 40, "from_countries": [{"c": "Sudan", "v": 40}, {"c": "United States", "v": 40}]}, {"keyword": "gp life in australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 40, "from_countries": [{"c": "Sudan", "v": 40}, {"c": "United States", "v": 40}]}, {"keyword": "gp relocation to australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 40, "from_countries": [{"c": "Sudan", "v": 40}, {"c": "United States", "v": 40}]}, {"keyword": "internal medicine physician jobs orange county ca", "seed": "General Practitioner Jobs", "target": "Orange", "au_volume": 40, "from_countries": [{"c": "Sudan", "v": 40}, {"c": "United States", "v": 40}]}, {"keyword": "doctor australia jobs", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 40, "from_countries": [{"c": "Brazil", "v": 40}]}, {"keyword": "how to get doctor job in australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 30, "from_countries": [{"c": "India", "v": 30}]}, {"keyword": "junior doctor jobs australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 30, "from_countries": [{"c": "India", "v": 30}, {"c": "Sri Lanka", "v": 10}, {"c": "Ireland", "v": 10}, {"c": "New Zealand", "v": 30}, {"c": "Brazil", "v": 10}]}, {"keyword": "non clinical jobs for doctors australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 30, "from_countries": [{"c": "India", "v": 30}, {"c": "Pakistan", "v": 30}]}, {"keyword": "locum doctor australia", "seed": "Locum GP Jobs", "target": "Australia", "au_volume": 30, "from_countries": [{"c": "United Kingdom", "v": 30}]}, {"keyword": "locum doctors perth", "seed": "Locum GP Jobs", "target": "Perth", "au_volume": 30, "from_countries": [{"c": "United Kingdom", "v": 30}]}, {"keyword": "gp jobs wa", "seed": "GP Jobs", "target": "Perth", "au_volume": 30, "from_countries": [{"c": "New Zealand", "v": 30}]}, {"keyword": "gp locum jobs australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 30, "from_countries": [{"c": "New Zealand", "v": 30}, {"c": "Brazil", "v": 10}]}, {"keyword": "rural gp jobs australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 30, "from_countries": [{"c": "New Zealand", "v": 30}]}, {"keyword": "gp jobs in australia for imgs", "seed": "GP Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "India", "v": 20}]}, {"keyword": "gp jobs australia salary", "seed": "GP Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "India", "v": 10}, {"c": "New Zealand", "v": 20}]}, {"keyword": "gp jobs perth", "seed": "GP Jobs", "target": "Perth", "au_volume": 20, "from_countries": [{"c": "India", "v": 10}, {"c": "Ireland", "v": 10}, {"c": "New Zealand", "v": 10}, {"c": "Malaysia", "v": 10}, {"c": "Brazil", "v": 20}]}, {"keyword": "how to apply doctor job in australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "India", "v": 20}]}, {"keyword": "how to apply for doctor job in australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "India", "v": 20}, {"c": "Pakistan", "v": 20}, {"c": "Malaysia", "v": 20}]}, {"keyword": "img doctor jobs in australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "India", "v": 20}]}, {"keyword": "job opportunities for doctors in australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "India", "v": 20}, {"c": "Malaysia", "v": 20}]}, {"keyword": "jobs for doctors in australia without amc", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "India", "v": 20}, {"c": "Philippines", "v": 10}, {"c": "Pakistan", "v": 20}, {"c": "Sri Lanka", "v": 10}, {"c": "Bangladesh", "v": 10}, {"c": "Nigeria", "v": 10}, {"c": "Malaysia", "v": 10}, {"c": "Dubai", "v": 20}]}, {"keyword": "jobs for homeopathic doctors in australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "India", "v": 20}]}, {"keyword": "jobs for indian doctors in australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "India", "v": 20}]}, {"keyword": "jobs for indian mbbs doctors in australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "India", "v": 20}]}, {"keyword": "jobs for mbbs doctors in australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "India", "v": 20}]}, {"keyword": "juris doctor jobs australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "India", "v": 20}]}, {"keyword": "medical jobs in australia for overseas doctors", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "India", "v": 20}]}, {"keyword": "highest paying medical jobs in australia", "seed": "Medical Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "India", "v": 20}]}, {"keyword": "junior medical officer jobs in australia", "seed": "Medical Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "India", "v": 20}, {"c": "Sri Lanka", "v": 20}, {"c": "Ireland", "v": 10}, {"c": "Nepal", "v": 20}, {"c": "Brazil", "v": 10}]}, {"keyword": "medical jobs australia", "seed": "Medical Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "India", "v": 20}, {"c": "South Africa", "v": 20}, {"c": "Philippines", "v": 20}, {"c": "Pakistan", "v": 20}, {"c": "Sri Lanka", "v": 20}, {"c": "Ireland", "v": 20}, {"c": "New Zealand", "v": 20}, {"c": "Bangladesh", "v": 20}, {"c": "Nigeria", "v": 20}, {"c": "Nepal", "v": 20}, {"c": "Malaysia", "v": 20}, {"c": "Egypt", "v": 20}, {"c": "Dubai", "v": 20}, {"c": "Brazil", "v": 20}, {"c": "Germany", "v": 20}]}, {"keyword": "medical officer jobs in australia", "seed": "Medical Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "India", "v": 20}, {"c": "Pakistan", "v": 20}, {"c": "Nigeria", "v": 10}, {"c": "Nepal", "v": 20}]}, {"keyword": "gp locum australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "United Kingdom", "v": 20}]}, {"keyword": "gp locum rates australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "United Kingdom", "v": 20}]}, {"keyword": "gp locums australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "United Kingdom", "v": 20}]}, {"keyword": "locum gp australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "United Kingdom", "v": 20}]}, {"keyword": "remote gp jobs australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "United Kingdom", "v": 20}]}, {"keyword": "fellowships in australia for international medical graduates", "seed": "International Medical Graduate Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "United Kingdom", "v": 20}]}, {"keyword": "international medical degrees recognised in australia", "seed": "International Medical Graduate Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "United Kingdom", "v": 20}]}, {"keyword": "international medical graduate australia", "seed": "International Medical Graduate Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "United Kingdom", "v": 20}]}, {"keyword": "international medical graduate jobs australia", "seed": "International Medical Graduate Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "United Kingdom", "v": 20}]}, {"keyword": "international medical graduates australia", "seed": "International Medical Graduate Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "United Kingdom", "v": 20}, {"c": "Sudan", "v": 20}, {"c": "United States", "v": 20}]}, {"keyword": "locum doctor adelaide", "seed": "Locum GP Jobs", "target": "Adelaide", "au_volume": 20, "from_countries": [{"c": "United Kingdom", "v": 20}]}, {"keyword": "locum doctor jobs australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "United Kingdom", "v": 20}, {"c": "Brazil", "v": 10}]}, {"keyword": "locum doctor perth", "seed": "Locum GP Jobs", "target": "Perth", "au_volume": 20, "from_countries": [{"c": "United Kingdom", "v": 20}]}, {"keyword": "locum doctors in australia", "seed": "Locum GP Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "United Kingdom", "v": 20}]}, {"keyword": "jobs for pakistani doctors in australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "Pakistan", "v": 20}]}, {"keyword": "medical doctor jobs in australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "Ireland", "v": 10}, {"c": "New Zealand", "v": 20}, {"c": "Nigeria", "v": 10}, {"c": "Malaysia", "v": 10}, {"c": "Zimbabwe", "v": 20}, {"c": "Brazil", "v": 20}, {"c": "Germany", "v": 20}]}, {"keyword": "western australia medical jobs", "seed": "Medical Jobs Australia", "target": "Perth", "au_volume": 20, "from_countries": [{"c": "Ireland", "v": 20}]}, {"keyword": "australia international medical graduates", "seed": "International Medical Graduate Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "Sudan", "v": 20}, {"c": "United States", "v": 20}]}, {"keyword": "international medical graduates in australia", "seed": "International Medical Graduate Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "Sudan", "v": 20}, {"c": "United States", "v": 20}]}, {"keyword": "australia gp jobs", "seed": "GP Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "Brazil", "v": 10}, {"c": "Germany", "v": 20}]}, {"keyword": "doctor job vacancy in australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "Brazil", "v": 20}, {"c": "Germany", "v": 20}]}, {"keyword": "doctors job australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "Brazil", "v": 20}]}, {"keyword": "job for doctors in australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "Brazil", "v": 20}, {"c": "Germany", "v": 20}]}, {"keyword": "jobs for doctors australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "Brazil", "v": 20}, {"c": "Germany", "v": 20}]}, {"keyword": "medical doctor jobs australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "Brazil", "v": 20}, {"c": "Germany", "v": 20}]}, {"keyword": "doctor jobs australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "Brazil", "v": 10}, {"c": "Germany", "v": 20}]}, {"keyword": "gp salary canada vs australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "Canada", "v": 20}]}, {"keyword": "how much do gps earn australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "Canada", "v": 20}]}, {"keyword": "how much do gps make in australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "Canada", "v": 20}]}, {"keyword": "doctor jobs victoria", "seed": "GP Jobs", "target": "Melbourne", "au_volume": 20, "from_countries": [{"c": "Canada", "v": 20}]}, {"keyword": "physician jobs australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "Canada", "v": 20}]}, {"keyword": "gp jobs in canberra australia", "seed": "GP Jobs", "target": "Canberra", "au_volume": 20, "from_countries": [{"c": "Germany", "v": 20}]}, {"keyword": "gp jobs in geelong australia", "seed": "GP Jobs", "target": "Geelong", "au_volume": 20, "from_countries": [{"c": "Germany", "v": 20}]}, {"keyword": "gp jobs in new south wales australia", "seed": "GP Jobs", "target": "Sydney", "au_volume": 20, "from_countries": [{"c": "Germany", "v": 20}]}, {"keyword": "gp jobs in sydney australia", "seed": "GP Jobs", "target": "Sydney", "au_volume": 20, "from_countries": [{"c": "Germany", "v": 20}]}, {"keyword": "gp jobs in the australian capital territory", "seed": "GP Jobs", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "Germany", "v": 20}]}, {"keyword": "gp jobs in the gold coast australia", "seed": "GP Jobs", "target": "Gold Coast", "au_volume": 20, "from_countries": [{"c": "Germany", "v": 20}]}, {"keyword": "gp jobs in the sunshine coast australia", "seed": "GP Jobs", "target": "Sunshine Coast", "au_volume": 20, "from_countries": [{"c": "Germany", "v": 20}]}, {"keyword": "flying doctors australia jobs", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 20, "from_countries": [{"c": "Germany", "v": 20}]}, {"keyword": "img australia jobs", "seed": "IMG Jobs Australia", "target": "Australia", "au_volume": 10, "from_countries": [{"c": "India", "v": 10}, {"c": "Pakistan", "v": 10}, {"c": "Nigeria", "v": 10}, {"c": "Germany", "v": 10}]}, {"keyword": "gp jobs queensland", "seed": "GP Jobs", "target": "Brisbane", "au_volume": 10, "from_countries": [{"c": "Ireland", "v": 10}]}, {"keyword": "gp jobs adelaide", "seed": "GP Jobs", "target": "Adelaide", "au_volume": 10, "from_countries": [{"c": "New Zealand", "v": 10}, {"c": "Brazil", "v": 10}]}, {"keyword": "medical jobs in australia for uk doctors", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 10, "from_countries": [{"c": "New Zealand", "v": 10}]}, {"keyword": "doctor job in australia for foreigners", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 10, "from_countries": [{"c": "Nigeria", "v": 10}]}, {"keyword": "gp jobs nsw", "seed": "GP Jobs", "target": "Sydney", "au_volume": 10, "from_countries": [{"c": "Dubai", "v": 10}]}, {"keyword": "brisbane gp jobs", "seed": "GP Jobs", "target": "Brisbane", "au_volume": 10, "from_countries": [{"c": "Brazil", "v": 10}, {"c": "Germany", "v": 10}]}, {"keyword": "gp job australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 10, "from_countries": [{"c": "Brazil", "v": 10}]}, {"keyword": "gp job perth", "seed": "GP Jobs", "target": "Perth", "au_volume": 10, "from_countries": [{"c": "Brazil", "v": 10}]}, {"keyword": "gp jobs geelong", "seed": "GP Jobs", "target": "Geelong", "au_volume": 10, "from_countries": [{"c": "Brazil", "v": 10}]}, {"keyword": "gp jobs perth australia", "seed": "GP Jobs", "target": "Perth", "au_volume": 10, "from_countries": [{"c": "Brazil", "v": 10}]}, {"keyword": "gp jobs perth wa", "seed": "GP Jobs", "target": "Perth", "au_volume": 10, "from_countries": [{"c": "Brazil", "v": 10}]}, {"keyword": "australia doctor jobs", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 10, "from_countries": [{"c": "Brazil", "v": 10}]}, {"keyword": "doctor job australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 10, "from_countries": [{"c": "Brazil", "v": 10}]}, {"keyword": "jobs for doctors in australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 10, "from_countries": [{"c": "Brazil", "v": 10}]}, {"keyword": "junior doctor jobs in australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 10, "from_countries": [{"c": "Brazil", "v": 10}]}, {"keyword": "rural doctor jobs australia", "seed": "Doctor Jobs Australia", "target": "Australia", "au_volume": 10, "from_countries": [{"c": "Brazil", "v": 10}]}, {"keyword": "general practitioner australia jobs", "seed": "General Practitioner Jobs", "target": "Australia", "au_volume": 10, "from_countries": [{"c": "Brazil", "v": 10}]}, {"keyword": "general practitioner jobs sydney", "seed": "General Practitioner Jobs", "target": "Sydney", "au_volume": 10, "from_countries": [{"c": "Brazil", "v": 10}]}, {"keyword": "jobs for international medical graduates in australia", "seed": "Medical Jobs Australia", "target": "Australia", "au_volume": 10, "from_countries": [{"c": "Brazil", "v": 10}]}, {"keyword": "medical jobs in australia", "seed": "Medical Jobs Australia", "target": "Australia", "au_volume": 10, "from_countries": [{"c": "Brazil", "v": 10}]}, {"keyword": "resident medical officer jobs in australia", "seed": "Medical Jobs Australia", "target": "Australia", "au_volume": 10, "from_countries": [{"c": "Brazil", "v": 10}]}, {"keyword": "gp job adelaide", "seed": "GP Jobs", "target": "Adelaide", "au_volume": 10, "from_countries": [{"c": "Germany", "v": 10}]}, {"keyword": "gp job in australia", "seed": "GP Jobs", "target": "Australia", "au_volume": 10, "from_countries": [{"c": "Germany", "v": 10}]}, {"keyword": "gp jobs in adelaide australia", "seed": "GP Jobs", "target": "Adelaide", "au_volume": 10, "from_countries": [{"c": "Germany", "v": 10}]}, {"keyword": "gp jobs in albury wodonga australia", "seed": "GP Jobs", "target": "Wodonga", "au_volume": 10, "from_countries": [{"c": "Germany", "v": 10}]}, {"keyword": "gp jobs in brisbane australia", "seed": "GP Jobs", "target": "Brisbane", "au_volume": 10, "from_countries": [{"c": "Germany", "v": 10}]}, {"keyword": "gp jobs in cairns australia", "seed": "GP Jobs", "target": "Cairns", "au_volume": 10, "from_countries": [{"c": "Germany", "v": 10}]}, {"keyword": "gp jobs in darwin australia", "seed": "GP Jobs", "target": "Darwin", "au_volume": 10, "from_countries": [{"c": "Germany", "v": 10}]}, {"keyword": "gp jobs in hobart tasmania", "seed": "GP Jobs", "target": "Hobart", "au_volume": 10, "from_countries": [{"c": "Germany", "v": 10}]}, {"keyword": "img jobs australia", "seed": "IMG Jobs Australia", "target": "Australia", "au_volume": 10, "from_countries": [{"c": "Germany", "v": 10}]}, {"keyword": "gp jobs in launceston australia", "seed": "GP Jobs Australia", "target": "Launceston", "au_volume": 10, "from_countries": [{"c": "Germany", "v": 10}]}, {"keyword": "gp jobs in newcastle australia", "seed": "GP Jobs Australia", "target": "Newcastle", "au_volume": 10, "from_countries": [{"c": "Germany", "v": 10}]}, {"keyword": "gp jobs in perth australia", "seed": "GP Jobs Australia", "target": "Perth", "au_volume": 10, "from_countries": [{"c": "Germany", "v": 10}]}, {"keyword": "gp jobs in queensland australia", "seed": "GP Jobs", "target": "Brisbane", "au_volume": 10, "from_countries": [{"c": "Germany", "v": 10}]}]
+};
+
+const PALETTE=[
+  ["#D4F1F4","#0E6B7A"],["#D5E8D4","#1B5E20"],["#DAE8FC","#1565C0"],
+  ["#E1D5E7","#6A1B9A"],["#FFE6CC","#E65100"],["#FFD5D5","#B71C1C"],
+  ["#FFF3CC","#F57F17"],["#D5F5E3","#145A32"],["#FCE4EC","#880E4F"],
+  ["#E8EAF6","#283593"],["#E0F2F1","#004D40"],["#F3E5F5","#4A148C"],
+  ["#FBE9E7","#BF360C"],["#E0F7FA","#006064"],["#EFEBE9","#4E342E"],
+  ["#F9FBE7","#558B2F"],["#FFF9C4","#F9A825"],["#E3F2FD","#0D47A1"],
+  ["#F1F8E9","#33691E"],["#FDE7F3","#AD1457"]
+];
+const ACCENTS=["#4A90D9","#27AE60","#E67E22","#9B59B6","#E74C3C",
+  "#16A085","#2C3E50","#F39C12","#1ABC9C","#E91E63","#3F51B5","#FF5722"];
+
+function hashColor(n){let h=0;for(let i=0;i<n.length;i++)h=(h*31+n.charCodeAt(i))>>>0;return PALETTE[h%PALETTE.length];}
+
+function fillSeeds(rows){
+  let last="Other";
+  return rows.map(r=>{if(r.seed)last=r.seed;return{...r,seed:last};});
+}
+
+const DATA={};
+// Seed group → profession mappings for MOD and AHP splits
+const MOD_MAP = {
+  "Psychology":   s => /psycholog/i.test(s),
+  "Psychiatrist": s => /psychiatr/i.test(s),
+  "Dentist":      s => /dentist/i.test(s),
+};
+const AHP_MAP = {
+  "OT":                 s => /occupational therapist|\bOT\b|paediatric ot|mental health ot/i.test(s),
+  "Podiatrist":         s => /podiatr/i.test(s),
+  "Physio":             s => /physio/i.test(s),
+  "Speech Pathologist": s => /speech/i.test(s),
+};
+// Renamed simple divisions
+const RENAME = {"VR GP":"VR GP","GP Registrar":"GP Registrar","GP Locum":"GP Locum"};
+Object.entries(RAW).forEach(([d,rows])=>{
+  const filled = fillSeeds(rows);
+  if(RENAME[d]){
+    DATA[RENAME[d]] = filled;
+  } else if(d==="MOD"){
+    Object.entries(MOD_MAP).forEach(([name,fn])=>{
+      DATA[name] = filled.filter(r=>fn(r.seed||""));
+    });
+    // fallback: unsorted seeds go to Psychology
+    const matched = filled.filter(r=>Object.values(MOD_MAP).some(fn=>fn(r.seed||"")));
+    const unmatched = filled.filter(r=>!Object.values(MOD_MAP).some(fn=>fn(r.seed||"")));
+    if(unmatched.length) DATA["Psychology"] = (DATA["Psychology"]||[]).concat(unmatched);
+  } else if(d==="AHP"){
+    Object.entries(AHP_MAP).forEach(([name,fn])=>{
+      DATA[name] = filled.filter(r=>fn(r.seed||""));
+    });
+    const unmatched = filled.filter(r=>!Object.values(AHP_MAP).some(fn=>fn(r.seed||"")));
+    if(unmatched.length) DATA["Physio"] = (DATA["Physio"]||[]).concat(unmatched);
+  } else {
+    DATA[d] = filled;
+  }
+});
+
+const COLORS={};
+Object.values(DATA).flat().forEach(r=>{
+  [r.target].filter(Boolean).forEach(l=>{if(!COLORS[l])COLORS[l]=hashColor(l.toLowerCase());});
+});
+
+let active=Object.keys(DATA).find(d=>(DATA[d]&&DATA[d].length>0)||(NO_QUERY[d]&&NO_QUERY[d].length>0))||Object.keys(DATA)[0];
+let currentView='keyword';
+
+function setView(v){
+  currentView=v;
+  document.getElementById("vt-kw").classList.toggle("active",v==="keyword");
+  document.getElementById("vt-city").classList.toggle("active",v==="city");
+  render();
+}
+
+function renderKeywordView(rows){
+  const groups={};
+  rows.forEach(r=>{const s=r.seed||"Other";(groups[s]=groups[s]||[]).push(r);});
+  const mx=Math.max(...rows.map(r=>r.au_volume),1);
+  const sortedGroups=Object.entries(groups).sort(([,a],[,b])=>{
+    return (b.some(r=>r.au_volume>0)?1:0)-(a.some(r=>r.au_volume>0)?1:0);
+  });
+  let idx=1,html="",si=0;
+  for(const[seed,kws]of sortedGroups){
+    const ac=ACCENTS[si++%ACCENTS.length];
+    const withVol=kws.filter(r=>r.au_volume>0).sort((a,b)=>b.au_volume-a.au_volume);
+    const allZero=withVol.length===0;
+    html+=`<div class="section">
+      <div class="shdr"><span class="sdot" style="background:${ac}"></span>${seed}<span class="scnt">${kws.length} kw</span></div>
+      <div class="tbl-wrap"><table>
+        ${typeColgroup()}
+        <thead><tr><th>#</th><th>Keyword</th><th style="text-align:center">Target</th>${typeHeader()}${active!=="SIMG"?"<th>AU Volume</th>":""}</tr></thead>
+        <tbody>`;
+    if(allZero){
+      html+=`<tr class="zero-row"><td colspan="5"><span class="zero-label">No Search Volume</span></td></tr>`;
+    } else {
+      withVol.slice(0,5).forEach(r=>{
+        const pct=mx>0?Math.round(r.au_volume/mx*100):0;
+        html+=`<tr>
+          <td class="n"><span class="bar" style="background:${ac}"></span>${idx++}</td>
+          <td class="kw">${r.keyword}</td>
+          <td class="tgt" style="text-align:center">${resolveTarget(r)||"—"}</td>
+          ${typeCell(r)}
+          ${active!=="SIMG"?'<td><div class="vc"><span class="vn">'+r.au_volume.toLocaleString()+'</span><div class="vbw"><div class="vbf" style="width:'+pct+'%"></div></div></div></td>':""}
+        </tr>`;
+      });
+    }
+    html+=`</tbody></table></div></div>`;
+  }
+
+  return html;
+}
+
+const AI_VOL={"VR GP":[{"city":"Sydney","state":"NSW","vol":123},{"city":"Melbourne","state":"VIC","vol":119},{"city":"Brisbane","state":"QLD","vol":62},{"city":"Perth","state":"WA","vol":49},{"city":"Adelaide","state":"SA","vol":33}],"GP Registrar":[{"city":"Toowoomba","state":"QLD","vol":40},{"city":"Bendigo","state":"VIC","vol":32},{"city":"Bunbury","state":"WA","vol":29},{"city":"Wagga Wagga","state":"NSW","vol":25},{"city":"Alice Springs","state":"NT","vol":22}],"GP Locum":[{"city":"Sydney","state":"NSW","vol":88},{"city":"Melbourne","state":"VIC","vol":85},{"city":"Brisbane","state":"QLD","vol":54},{"city":"Perth","state":"WA","vol":44},{"city":"Adelaide","state":"SA","vol":31}],"Psychology":[{"city":"Sydney","state":"NSW","vol":699},{"city":"Melbourne","state":"VIC","vol":676},{"city":"Brisbane","state":"QLD","vol":350},{"city":"Perth","state":"WA","vol":280},{"city":"Adelaide","state":"SA","vol":186}],"Psychiatrist":[{"city":"Sydney","state":"NSW","vol":78},{"city":"Melbourne","state":"VIC","vol":75},{"city":"Brisbane","state":"QLD","vol":39},{"city":"Perth","state":"WA","vol":31},{"city":"Adelaide","state":"SA","vol":21}],"Dentist":[{"city":"Sydney","state":"NSW","vol":321},{"city":"Melbourne","state":"VIC","vol":310},{"city":"Brisbane","state":"QLD","vol":161},{"city":"Perth","state":"WA","vol":128},{"city":"Adelaide","state":"SA","vol":86}],"OT":[{"city":"Sydney","state":"NSW","vol":186},{"city":"Melbourne","state":"VIC","vol":180},{"city":"Brisbane","state":"QLD","vol":93},{"city":"Perth","state":"WA","vol":74},{"city":"Adelaide","state":"SA","vol":50}],"Podiatrist":[{"city":"Sydney","state":"NSW","vol":51},{"city":"Melbourne","state":"VIC","vol":49},{"city":"Brisbane","state":"QLD","vol":26},{"city":"Perth","state":"WA","vol":20},{"city":"Adelaide","state":"SA","vol":14}],"Physio":[{"city":"Sydney","state":"NSW","vol":102},{"city":"Melbourne","state":"VIC","vol":99},{"city":"Brisbane","state":"QLD","vol":51},{"city":"Perth","state":"WA","vol":41},{"city":"Adelaide","state":"SA","vol":27}],"Speech Pathologist":[{"city":"Sydney","state":"NSW","vol":351},{"city":"Melbourne","state":"VIC","vol":339},{"city":"Brisbane","state":"QLD","vol":176},{"city":"Perth","state":"WA","vol":140},{"city":"Adelaide","state":"SA","vol":94}]};
+
+const AI_LOC={"VR GP":[{"city":"Sydney","state":"NSW","vol":123},{"city":"Melbourne","state":"VIC","vol":119},{"city":"Brisbane","state":"QLD","vol":62},{"city":"Perth","state":"WA","vol":49},{"city":"Adelaide","state":"SA","vol":33}],"GP Registrar":[{"city":"Sydney","state":"NSW","vol":54},{"city":"Melbourne","state":"VIC","vol":52},{"city":"Brisbane","state":"QLD","vol":27},{"city":"Perth","state":"WA","vol":22},{"city":"Adelaide","state":"SA","vol":14}],"GP Locum":[{"city":"Sydney","state":"NSW","vol":88},{"city":"Melbourne","state":"VIC","vol":85},{"city":"Brisbane","state":"QLD","vol":54},{"city":"Perth","state":"WA","vol":44},{"city":"Adelaide","state":"SA","vol":31}],"Psychology":[{"city":"Sydney","state":"NSW","vol":699},{"city":"Melbourne","state":"VIC","vol":676},{"city":"Brisbane","state":"QLD","vol":350},{"city":"Perth","state":"WA","vol":280},{"city":"Adelaide","state":"SA","vol":186}],"Psychiatrist":[{"city":"Sydney","state":"NSW","vol":78},{"city":"Melbourne","state":"VIC","vol":75},{"city":"Brisbane","state":"QLD","vol":39},{"city":"Perth","state":"WA","vol":31},{"city":"Adelaide","state":"SA","vol":21}],"Dentist":[{"city":"Sydney","state":"NSW","vol":321},{"city":"Melbourne","state":"VIC","vol":310},{"city":"Brisbane","state":"QLD","vol":161},{"city":"Perth","state":"WA","vol":128},{"city":"Adelaide","state":"SA","vol":86}],"OT":[{"city":"Sydney","state":"NSW","vol":186},{"city":"Melbourne","state":"VIC","vol":180},{"city":"Brisbane","state":"QLD","vol":93},{"city":"Perth","state":"WA","vol":74},{"city":"Adelaide","state":"SA","vol":50}],"Podiatrist":[{"city":"Sydney","state":"NSW","vol":51},{"city":"Melbourne","state":"VIC","vol":49},{"city":"Brisbane","state":"QLD","vol":26},{"city":"Perth","state":"WA","vol":20},{"city":"Adelaide","state":"SA","vol":14}],"Physio":[{"city":"Sydney","state":"NSW","vol":102},{"city":"Melbourne","state":"VIC","vol":99},{"city":"Brisbane","state":"QLD","vol":51},{"city":"Perth","state":"WA","vol":41},{"city":"Adelaide","state":"SA","vol":27}],"Speech Pathologist":[{"city":"Sydney","state":"NSW","vol":351},{"city":"Melbourne","state":"VIC","vol":339},{"city":"Brisbane","state":"QLD","vol":176},{"city":"Perth","state":"WA","vol":140},{"city":"Adelaide","state":"SA","vol":94}]};
+function renderAiLocSection(divName){
+  const KEY_MAP={
+    "VR GP":"VR GP","GP Registrar":"GP Registrar","GP Locum":"GP Locum",
+    "Psychology":"Psychology","Psychiatrist":"Psychiatrist","Dentist":"Dentist",
+    "OT":"OT","Podiatrist":"Podiatrist","Physio":"Physio",
+    "Speech Pathologist":"Speech Pathologist"
+  };
+  const key=KEY_MAP[divName];
+  const rows=key&&AI_LOC[key];
+  if(!rows||!rows.length) return '';
+  const mx=Math.max(...rows.map(r=>r.vol),1);
+  let h=`
+  <div style="margin-top:28px;font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--muted);text-transform:uppercase;margin-bottom:8px;padding-left:2px">
+    &#x1F50D; Where Searchers Are From &mdash; August 2026
+    <span style="font-weight:400;text-transform:none;letter-spacing:0;margin-left:6px;opacity:.6">AI-estimated origin cities of job seekers (Perplexity, Aug 2026)</span>
+  </div>
+  <div class="section"><div class="tbl-wrap"><table>
+    <colgroup><col class="c-num"><col class="c-kw"><col style="width:80px"><col class="c-vol"></colgroup>
+    <thead><tr><th>#</th><th>City</th><th>State</th><th>Est. Monthly Searches</th></tr></thead>
+    <tbody>`;
+  rows.forEach((r,i)=>{
+    const pct=Math.round(r.vol/mx*100);
+    h+=`<tr>
+      <td class="n">${i+1}</td>
+      <td style="text-align:left;padding-left:12px;font-weight:${i<3?'700':'400'};font-size:13px">${r.city}</td>
+      <td style="text-align:center;color:var(--muted);font-size:12px">${r.state}</td>
+      <td><div class="vc"><span class="vn city-total">${r.vol.toLocaleString()}</span><div class="vbw"><div class="vbf" style="width:${pct}%"></div></div></div></td>
+    </tr>`;
+  });
+  h+=`</tbody></table></div></div>`;
+  return h;
+}
+
+function renderAiSection(divName){
+  const KEY_MAP={
+    "VR GP":"VR GP","GP Registrar":"GP Registrar","GP Locum":"GP Locum",
+    "Psychology":"Psychology","Psychiatrist":"Psychiatrist","Dentist":"Dentist",
+    "OT":"OT","Podiatrist":"Podiatrist","Physio":"Physio",
+    "Speech Pathologist":"Speech Pathologist"
+  };
+  const key=KEY_MAP[divName];
+  const rows=key&&AI_VOL[key];
+  if(!rows||!rows.length) return '';
+  const mx=Math.max(...rows.map(r=>r.vol),1);
+  let h=`
+  <div style="margin-top:28px;font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--muted);text-transform:uppercase;margin-bottom:8px;padding-left:2px">
+    &#x1F916; AI Estimated City Demand &mdash; August 2026
+    <span style="font-weight:400;text-transform:none;letter-spacing:0;margin-left:6px;opacity:.6">AI-estimated monthly searches by city (Perplexity, Aug 2026)</span>
+  </div>
+  <div class="section"><div class="tbl-wrap"><table>
+    <colgroup><col class="c-num"><col class="c-kw"><col style="width:80px"><col class="c-vol"></colgroup>
+    <thead><tr><th>#</th><th>City</th><th>State</th><th>Est. Monthly Searches</th></tr></thead>
+    <tbody>`;
+  rows.forEach((r,i)=>{
+    const pct=Math.round(r.vol/mx*100);
+    h+=`<tr>
+      <td class="n">${i+1}</td>
+      <td style="text-align:left;padding-left:12px;font-weight:${i<3?'700':'400'};font-size:13px">${r.city}</td>
+      <td style="text-align:center;color:var(--muted);font-size:12px">${r.state}</td>
+      <td><div class="vc"><span class="vn city-total">${r.vol.toLocaleString()}</span><div class="vbw"><div class="vbf" style="width:${pct}%"></div></div></div></td>
+    </tr>`;
+  });
+  h+=`</tbody></table></div></div>`;
+  return h;
+}
+
+function renderCityView(rows){
+  const isSIMG = active==="SIMG";
+  const rowVol = r => isSIMG
+    ? (r.from_countries||[]).filter(x=>SIMG_COLS.includes(x.c)).reduce((s,x)=>s+x.v,0)
+    : (r.au_volume||0);
+
+  // Build city map from keywords (top 5 per seed, au_volume > 0)
+  const groups={};
+  rows.forEach(r=>{const s=r.seed||"Other";(groups[s]=groups[s]||[]).push(r);});
+  const visible=[];
+  Object.values(groups).forEach(kws=>{
+    kws.filter(r=>r.au_volume>0).sort((a,b)=>b.au_volume-a.au_volume).forEach(r=>visible.push(r));
+  });
+  const cityMap={};
+  visible.forEach(r=>{
+    const city=resolveTarget(r)||"Other";
+    if(!city||city==="Australia") return;
+    if(!cityMap[city]) cityMap[city]={total:0,keywords:[]};
+    cityMap[city].total+=rowVol(r);
+    cityMap[city].keywords.push(r);
+  });
+  const sorted=Object.entries(cityMap).filter(([,d])=>d.total>0).sort(([,a],[,b])=>b.total-a.total).slice(0,5);
+  if(!sorted.length) return '<div class="empty">No keywords with volume in this division.</div>';
+
+  const mx=Math.max(...sorted.map(([,d])=>d.total),1);
+  const volHdr = isSIMG ? "Total Int'l Volume" : "Total AU Volume";
+
+  // ── TABLE 1: Target City ─────────────────────────────────────────────────
+  let html=`
+  <div style="font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--muted);text-transform:uppercase;margin-bottom:8px;padding-left:2px">
+    Target City &mdash; Keyword Search Demand
+  </div>
+  <div class="section"><div class="tbl-wrap"><table>
+    <colgroup><col class="c-num"><col class="c-kw"><col style="width:120px"><col class="c-vol"></colgroup>
+    <thead><tr><th>#</th><th>Target City</th><th>Keywords</th><th>${volHdr}</th></tr></thead>
+    <tbody>`;
+  sorted.forEach(([city,d],i)=>{
+    const pct=Math.round(d.total/mx*100);
+    const sorted_kws=d.keywords.sort((a,b)=>rowVol(b)-rowVol(a));
+    const chips=sorted_kws.slice(0,3).map(r=>`<span class="kw-chip">${r.keyword} <b>${rowVol(r).toLocaleString()}</b></span>`).join("");
+    const extraItems=sorted_kws.slice(3).map(r=>`<div class="kw-dd-item"><span>${r.keyword}</span><b>${rowVol(r).toLocaleString()}</b></div>`).join("");
+    const moreHtml=extraItems.replace(/"/g,"&quot;");
+    const more=sorted_kws.length>3?`<span class="kw-more" data-dd="${moreHtml}" onmouseenter="showDd(this)" onmouseleave="hideDd(this)">+${sorted_kws.length-3} more</span>`:"";
+    html+=`<tr>
+      <td class="n">${i+1}</td>
+      <td class="tgt" style="text-align:left;padding-left:12px">
+        <span style="font-weight:700;font-size:13px">${city}</span>
+        <div class="kw-chips kw-chips-wrap">${chips}${more}</div>
+      </td>
+      <td style="text-align:center;color:var(--muted);font-size:12px">${d.keywords.length}</td>
+      <td><div class="vc"><span class="vn city-total">${d.total.toLocaleString()}</span><div class="vbw"><div class="vbf" style="width:${pct}%"></div></div></div></td>
+    </tr>`;
+  });
+  html+=`</tbody></table></div></div>`;
+
+  // ── TABLE 3: Searcher Location ────────────────────────────────────────────
+  if(isSIMG){
+    // SIMG: aggregate from_countries from keywords visible in keyword view (top 5 per seed)
+    const countryTotals={};
+    visible.forEach(r=>{
+      (r.from_countries||[]).forEach(fc=>{
+        countryTotals[fc.c]=(countryTotals[fc.c]||0)+fc.v;
+      });
+    });
+    const topCountries=Object.entries(countryTotals).sort(([,a],[,b])=>b-a).slice(0,10);
+    if(topCountries.length){
+      const cMax=topCountries[0][1];
+      const cTotal=Object.values(countryTotals).reduce((s,v)=>s+v,0);
+      html+=`
+  <div style="margin-top:32px;font-size:11px;font-weight:700;letter-spacing:.07em;color:var(--muted);text-transform:uppercase;margin-bottom:8px;padding-left:2px">
+    🌏 Searcher Origin &mdash; Top 10 Countries
+    <span style="font-weight:400;text-transform:none;letter-spacing:0;margin-left:6px;opacity:.6">Countries where IMG candidates are searching from (SEMrush)</span>
+  </div>
+  <div class="section"><div class="tbl-wrap"><table>
+    <colgroup><col class="c-num"><col class="c-kw"><col class="c-vol"><col style="width:80px"></colgroup>
+    <thead><tr><th>#</th><th>Country</th><th>Search Volume</th><th style="text-align:center">% of Total</th></tr></thead>
+    <tbody>`;
+      topCountries.forEach(([country,vol],i)=>{
+        const pctC=Math.round(vol/cMax*100);
+        const pctOfTotal=((vol/cTotal)*100).toFixed(1);
+        html+=`<tr>
+          <td class="n">${i+1}</td>
+          <td class="tgt" style="text-align:left;padding-left:12px;font-weight:600">${country}</td>
+          <td><div class="vc"><span class="vn">${vol.toLocaleString()}</span><div class="vbw"><div class="vbf" style="width:${pctC}%"></div></div></div></td>
+          <td style="text-align:center;font-size:12px;font-weight:600">${pctOfTotal}%</td>
+        </tr>`;
+      });
+      html+=`</tbody></table></div></div>`;
+    }
+  }
+
+  return html;
+}
+
+function render(){
+  const rows=DATA[active]||[];
+  document.getElementById("cnt").textContent=rows.length+" keyword"+(rows.length!==1?"s":"");
+  const nq=NO_QUERY[active]||[];
+  let html=active==="SIMG" ? (rows.length ? renderKeywordView(rows) : '<div class="empty">No IMG keywords found.</div>') : (rows.length ? renderCityView(rows) : '<div class="empty">No search volume data found for this division.</div>');
+  if(nq.length){
+    html+=`<div class="nq-section" style="margin-top:16px">`;
+    nq.forEach(s=>{html+=`<div class="nq-row"><span class="nq-dot"></span>${s} — No Related Queries Found</div>`;});
+    html+=`</div>`;
+  }
+  document.getElementById("content").innerHTML=html;
+}
+
+const _dd=document.getElementById("kw-floating-dd");
+let _ddTimer=null;
+function showDd(el){
+  clearTimeout(_ddTimer);
+  _dd.innerHTML=el.dataset.dd;
+  _dd.style.display="block";
+  const r=el.getBoundingClientRect();
+  const ddW=300;
+  let left=r.left;
+  if(left+ddW>window.innerWidth-8) left=window.innerWidth-ddW-8;
+  let top=r.bottom+4;
+  _dd.style.left=left+"px";
+  _dd.style.top=top+"px";
+  _dd.onmouseenter=()=>clearTimeout(_ddTimer);
+  _dd.onmouseleave=()=>{_dd.style.display="none";};
+}
+function hideDd(){
+  _ddTimer=setTimeout(()=>{_dd.style.display="none";},120);
+}
+
+// Seek job counts per division per city (last 31 days) — populated by seek_job_counts.py
+const SEEK = {
+  "VR GP": {"ACT":23, "Adelaide":53, "Brisbane":150, "Canberra":23, "Melbourne":246, "New South Wales":245, "Newcastle":14, "Northern Territory":17, "Perth":56, "Queensland":328, "South Australia":62, "Sydney":138, "Tasmania":31, "Victoria":302, "Western Australia":88},
+  "GP Registrar": {"ACT":7, "Adelaide":11, "Brisbane":35, "Canberra":7, "Melbourne":32, "New South Wales":88, "Newcastle":3, "Northern Territory":6, "Perth":4, "Queensland":135, "South Australia":29, "Sydney":51, "Tasmania":17, "Victoria":59, "Western Australia":41},
+  "GP Locum": {"ACT":11, "Adelaide":7, "Brisbane":12, "Canberra":11, "Melbourne":36, "New South Wales":115, "Newcastle":7, "Northern Territory":5, "Perth":11, "Queensland":70, "South Australia":9, "Sydney":36, "Tasmania":0, "Victoria":99, "Western Australia":42},
+  "MOD": {"ACT":196, "Adelaide":414, "Brisbane":950, "Canberra":205, "Melbourne":1324, "New South Wales":1886, "Newcastle":153, "Northern Territory":136, "Perth":605, "Queensland":1912, "South Australia":495, "Sydney":1106, "Tasmania":195, "Victoria":1863, "Western Australia":823},
+  "AHP": {"ACT":224, "Adelaide":445, "Brisbane":830, "Canberra":226, "Melbourne":1245, "New South Wales":2130, "Newcastle":207, "Northern Territory":165, "Perth":623, "Queensland":1710, "South Australia":503, "Sydney":1282, "Tasmania":204, "Victoria":1759, "Western Australia":780},
+  "SIMG": {"ACT":7, "Adelaide":51, "Brisbane":90, "Canberra":7, "Melbourne":176, "New South Wales":168, "Newcastle":11, "Northern Territory":15, "Perth":39, "Queensland":136, "South Australia":54, "Sydney":125, "Tasmania":37, "Victoria":231, "Western Australia":45},
+  "Speech Pathologist": {"Melbourne":211, "Sydney":202, "Brisbane":141, "Perth":122, "Adelaide":56, "Wollongong":51},
+};
+
+var SIMG_COLS=(function(){
+  if(!RAW.SIMG) return [];
+  var t={};
+  RAW.SIMG.forEach(function(r){(r.from_countries||[]).forEach(function(x){t[x.c]=(t[x.c]||0)+x.v;});});
+  return Object.entries(t).sort(function(a,b){return b[1]-a[1];}).slice(0,8).map(function(x){return x[0];});
+})();
+// State-level target resolver — if keyword mentions a state but no city, use state name
+const STATE_MAP = [
+  {label:'New South Wales', patterns:[/\bnsw\b/,/\bnew south wales\b/],   cities:['sydney','newcastle','wollongong','parramatta']},
+  {label:'Victoria',        patterns:[/\bvic\b/,/\bvictoria\b/],           cities:['melbourne','geelong','ballarat','bendigo']},
+  {label:'Queensland',      patterns:[/\bqld\b/,/\bqueensland\b/],         cities:['brisbane','gold coast','cairns','townsville','sunshine coast']},
+  {label:'Western Australia',patterns:[/\bwa\b/,/\bwestern australia\b/],  cities:['perth','fremantle','bunbury']},
+  {label:'South Australia', patterns:[/\bsa\b/,/\bsouth australia\b/],     cities:['adelaide']},
+  {label:'Northern Territory',patterns:[/\bnt\b/,/\bnorthern territory\b/],cities:['darwin']},
+  {label:'Tasmania',        patterns:[/\btas\b/,/\btasmania\b/],           cities:['hobart','launceston']},
+  {label:'ACT',             patterns:[/\bact\b/,/\baustralia capital territory\b/],cities:['canberra']},
+];
+function resolveTarget(r){
+  if(r.target && r.target!=='' && r.target!=='Australia') return r.target;
+  var kw=(r.keyword||'').toLowerCase();
+  for(var s of STATE_MAP){
+    var hasState=s.patterns.some(p=>p.test(kw));
+    if(hasState){
+      var hasCity=s.cities.some(c=>kw.includes(c));
+      if(!hasCity) return s.label;
+    }
+  }
+  return r.target==='Australia' ? 'Australia' : '';
+}
+
+function typeColgroup(){
+  if(active!=='SIMG') return '<colgroup><col class="c-num"><col class="c-kw"><col class="c-tgt"><col class="c-typ"><col class="c-vol"></colgroup>';
+  var c='<colgroup><col class="c-num"><col class="c-kw" style="width:280px"><col class="c-tgt">';
+  SIMG_COLS.forEach(function(){c+='<col style="width:72px">';});
+  return c+'</colgroup>';
+}
+function typeHeader(){
+  if(active!=='SIMG') return '<th>Type</th>';
+  return SIMG_COLS.map(function(c){return '<th style="text-align:center;font-size:10px;white-space:normal;overflow:visible;word-break:break-word">'+c+'</th>';}).join('');
+}
+function typeCell(r){
+  if(active!=='SIMG') return '<td style="text-align:center"><span class="cand">Candidate</span></td>';
+  var lk={};
+  (r.from_countries||[]).forEach(function(x){lk[x.c]=x.v;});
+  return SIMG_COLS.map(function(c){
+    var v=lk[c]||0;
+    return v>0?'<td style="text-align:center;font-weight:700;font-size:12px;color:var(--accent)">'+v+'</td>'
+              :'<td style="text-align:center;color:var(--border);font-size:12px">—</td>';
+  }).join('');
+}
+const TAB_LABELS={"SIMG":"FIMG"};
+const DIVISIONS={
+  "GP":["VR GP","GP Registrar","GP Locum"],
+  "MOD":["Psychology","Psychiatrist","Dentist"],
+  "AHP":["OT","Podiatrist","Physio","Speech Pathologist"],
+  "FIMG":["SIMG"]
+};
+function tabHasData(d){return (DATA[d]&&DATA[d].length>0)||(NO_QUERY[d]&&NO_QUERY[d].length>0);}
+function divisionOf(d){return Object.keys(DIVISIONS).find(k=>DIVISIONS[k].includes(d));}
+function buildTabs(){
+  const wrap=document.getElementById("tabs");
+  wrap.innerHTML='<div class="tabrow div" id="divtabs"></div><div class="tabrow sub" id="subtabs"></div>';
+  const divRow=document.getElementById("divtabs"), subRow=document.getElementById("subtabs");
+  function showSub(div){
+    subRow.innerHTML="";
+    const profs=DIVISIONS[div].filter(tabHasData);
+    if(profs.length<2) return;
+    profs.forEach(d=>{
+      const t=document.createElement("div");
+      t.className="tab"+(d===active?" active":"");
+      t.textContent=TAB_LABELS[d]||d;
+      t.onclick=()=>{active=d;showSub(div);render();};
+      subRow.appendChild(t);
+    });
+  }
+  function selectDiv(div){
+    divRow.querySelectorAll(".tab").forEach(el=>el.classList.toggle("active",el.dataset.div===div));
+    showSub(div);
+  }
+  Object.keys(DIVISIONS).forEach(div=>{
+    const profs=DIVISIONS[div].filter(tabHasData);
+    if(!profs.length) return;
+    const t=document.createElement("div");
+    t.className="tab";t.dataset.div=div;t.textContent=div;
+    t.onclick=()=>{active=profs[0];selectDiv(div);render();};
+    divRow.appendChild(t);
+  });
+  selectDiv(divisionOf(active)||"GP");
+}
+
+buildTabs();render();
+</script>
+</body>
+</html>
+
